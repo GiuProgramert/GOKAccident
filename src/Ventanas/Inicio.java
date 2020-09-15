@@ -119,6 +119,11 @@ public class Inicio extends javax.swing.JFrame {
         jMenuConsultar.setText("Consultar registros");
 
         JMIConsultAccidente.setText("Consultar Accidentes");
+        JMIConsultAccidente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIConsultAccidenteActionPerformed(evt);
+            }
+        });
         jMenuConsultar.add(JMIConsultAccidente);
         jMenuConsultar.add(jSeparator2);
 
@@ -237,6 +242,10 @@ public class Inicio extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         new AcercaDe().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void JMIConsultAccidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIConsultAccidenteActionPerformed
+        new ConsultarAccidentes().setVisible(true);
+    }//GEN-LAST:event_JMIConsultAccidenteActionPerformed
 
     static void ponerTema(String tema, JFrame contenedor, JLabel[] labels, boolean poseelabal) {
         switch (tema) {
