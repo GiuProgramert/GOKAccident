@@ -21,17 +21,18 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     /**
      * Creates new form NCargarAccidentes
      */
-    boolean mod = false;
+    public static boolean mod = false;
 
     public NCargarAccidentes() {
+        initComponents();
         try {
-            initComponents();
-            String sql = "Select * from localidades";
+            String sql = "Select * from paises";
             ResultSet rs = Inicio.sente.consulta(sql);
 
             while (rs.next()) {
-                ComboNom.addItem(rs.getString("nombre"));
-                System.out.println(rs.getString("id_localidad") + " " + rs.getString("nombre") + " ");
+                RComboPais.addItem(rs.getString("nombre"));
+                LComboPais.addItem(rs.getString("nombre"));
+                MComboPais.addItem(rs.getString("nombre"));
             }
 
         } catch (SQLException ex) {
@@ -65,6 +66,8 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         RbtnGra = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         RtxtKm = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        RComboPais = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         LtxtNombre = new javax.swing.JTextField();
@@ -76,6 +79,8 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         LtxtValorTipo = new javax.swing.JTextField();
         LbtnGra = new javax.swing.JButton();
         LbtnMod = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        LComboPais = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         MtxtNombre = new javax.swing.JTextField();
@@ -87,6 +92,8 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         MtxtValorTipo = new javax.swing.JTextField();
         MbtnMod = new javax.swing.JButton();
         MbtnGra = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        MComboPais = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -131,7 +138,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             }
         });
 
-        RbtnMod.setText("Modificar");
+        RbtnMod.setText("Consultar");
         RbtnMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RbtnModActionPerformed(evt);
@@ -153,6 +160,14 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             }
         });
 
+        jLabel15.setText("Pais: ");
+
+        RComboPais.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                RComboPaisItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout RtxtPosHLayout = new javax.swing.GroupLayout(RtxtPosH);
         RtxtPosH.setLayout(RtxtPosHLayout);
         RtxtPosHLayout.setHorizontalGroup(
@@ -161,38 +176,40 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(RtxtPosHLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RtxtPosiH, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ComboNom, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(RtxtPosHLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(RtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(RtxtPosHLayout.createSequentialGroup()
                         .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(RtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
                         .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(RtxtKm, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(RtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(RtxtPosHLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(RtxtPosiH, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(RtxtPosHLayout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(RtxtPosHLayout.createSequentialGroup()
                                 .addComponent(RbtnGra)
-                                .addGap(104, 104, 104))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, RtxtPosHLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(RtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RbtnMod)
+                                .addGap(104, 104, 104)
+                                .addComponent(RbtnMod))
                             .addGroup(RtxtPosHLayout.createSequentialGroup()
-                                .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel4))
+                                .addComponent(RComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(RtxtKm, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(RtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                                .addComponent(ComboNom, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         RtxtPosHLayout.setVerticalGroup(
             RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,17 +227,21 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                     .addComponent(RtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(RtxtKm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
+                .addGap(30, 30, 30)
                 .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(RtxtPosiH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RtxtPosiH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(ComboNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(ComboNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(RComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RbtnMod)
                     .addComponent(RbtnGra))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Rios", RtxtPosH);
@@ -246,19 +267,21 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             }
         });
 
-        LbtnMod.setText("Modificar");
+        LbtnMod.setText("Consultar");
         LbtnMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LbtnModActionPerformed(evt);
             }
         });
 
+        jLabel16.setText("Pais: ");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -273,7 +296,11 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(LtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(72, 72, 72)
                         .addComponent(LbtnGra)
@@ -284,15 +311,19 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(LtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(LtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel16)
+                        .addComponent(LComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(LtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -312,7 +343,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LbtnGra)
                     .addComponent(LbtnMod))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Lagos", jPanel3);
@@ -343,7 +374,12 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             }
         });
 
-        MbtnMod.setText("Modificar");
+        MbtnMod.setText("Consultar");
+        MbtnMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MbtnModActionPerformed(evt);
+            }
+        });
 
         MbtnGra.setText("Grabar");
         MbtnGra.addActionListener(new java.awt.event.ActionListener() {
@@ -351,6 +387,8 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                 MbtnGraActionPerformed(evt);
             }
         });
+
+        jLabel17.setText("Pais: ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -373,7 +411,11 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(MtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(MtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(MComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -383,16 +425,20 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                         .addComponent(MbtnGra)
                         .addGap(81, 81, 81)
                         .addComponent(MbtnMod)))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(MtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel17)
+                        .addComponent(MComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel11)
+                        .addComponent(MtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(MtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -408,7 +454,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MbtnMod)
                     .addComponent(MbtnGra))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Montañas", jPanel2);
@@ -423,9 +469,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -456,7 +500,8 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     }//GEN-LAST:event_RtxtPosiHActionPerformed
 
     private void RbtnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtnModActionPerformed
-        // TODO add your handling code here:
+        new ConsultarAccidentes().setVisible(true);
+        ConsultarAccidentes.Montaña.setSelectedIndex(0);
     }//GEN-LAST:event_RbtnModActionPerformed
 //MONTAÑA
     private void MbtnGraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MbtnGraActionPerformed
@@ -466,13 +511,20 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         val.Ventero(MtxtPosH.getText(), MtxtPosH, false);
         val.Ventero(MtxtValorTipo.getText(), MtxtValorTipo, true);
         if (mod) {
-            String sql = "Update localidad set nombre='" + MtxtNombre.getText() + "', id_paises=" + ComboNom.getSelectedItem().toString().substring(0, 1) + " where id_accidentes=" + null;
+            String sqlm1 = "Update accidentes set nombre='" + MtxtNombre.getText() + "',posV=" + MtxtPosV.getText() + ",posH=" + MtxtPosH.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
+            String sqlm2 = "Update montañas set altura=" + MtxtValorTipo.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
 
-            if (Inicio.sente.ModificarTabla("")) {
-                System.out.println("modificado con exito");
+            if (Inicio.sente.ModificarTabla(sqlm1)) {
+                System.out.println("modificado con exito1m");
             } else {
-                System.out.println("error.no modifico");
+                System.out.println("error.no modifico1m");
             }
+            if (Inicio.sente.ModificarTabla(sqlm2)) {
+                System.out.println("modificado con exito2m");
+            } else {
+                System.out.println("error.no modifico2m");
+            }
+            mod = false;
         } else {
             if (val.comprobarCampos()) {
                 //Insertar accidentes
@@ -490,6 +542,13 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                     if (id.next()) {
                         String sqlr = "Insert into montañas values(" + MtxtValorTipo.getText() + "," + id.getString("id_accidentes") + ")";
                         Inicio.sente.insertarTabla(sqlr);
+                        //--------------------------------
+                        ResultSet id2 = Inicio.sente.consulta("select id_paises from paises where nombre='" + MComboPais.getSelectedItem() + "'");
+                        if (id2.next()) {
+                            Inicio.sente.insertarTabla("insert into accidentes_paises values("
+                                    + id.getString("id_accidentes")
+                                    + ", " + id2.getString("id_paises") + ")");
+                        }
                     }
                 } catch (SQLException ex) {
                     System.err.println("Error: " + ex);
@@ -504,9 +563,9 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     }//GEN-LAST:event_MbtnGraActionPerformed
 
     private void LbtnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LbtnModActionPerformed
-        NConsultarAccidentes nca = new NConsultarAccidentes();
-        nca.setVisible(true);
 
+        new ConsultarAccidentes().setVisible(true);
+        ConsultarAccidentes.Montaña.setSelectedIndex(1);
     }//GEN-LAST:event_LbtnModActionPerformed
 
     private void ComboNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboNomActionPerformed
@@ -519,14 +578,39 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         val.Ventero(RtxtPosV.getText(), RtxtPosV, false);
         val.Ventero(RtxtPosiH.getText(), RtxtPosiH, false);
         val.Ventero(RtxtValorTipo.getText(), RtxtValorTipo, true);
+        //
         if (mod) {
-            String sql = "Update localidad set nombre='" + RtxtNombre.getText() + "', id_paises=" + ComboNom.getSelectedItem().toString().substring(0, 1) + " where id_accidentes=" + null;
-
-            if (Inicio.sente.ModificarTabla("")) {
-                System.out.println("modificado con exito");
-            } else {
-                System.out.println("error.no modifico");
+            String sqlm1 = "Update accidentes set nombre='" + RtxtNombre.getText() + "',posV=" + RtxtPosV.getText() + ",posH=" + RtxtPosiH.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
+            String sqlm2 = "Update rios set longitud=" + RtxtValorTipo.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
+            String sqlm3;
+            try {
+                ResultSet idLocalidad = Inicio.sente.consulta("select id_localidad from rios_localidades where id_accidentes=" + ConsultarAccidentes.id);
+                if (idLocalidad.next()) {
+                    sqlm3 = "UPDATE rios_localidades set km=" + RtxtKm.getText()
+                            + " WHERE id_accidentes=" + ConsultarAccidentes.id + " AND "
+                            + "id_localidad=" + idLocalidad.getString("id_localidad");
+                    if (Inicio.sente.ModificarTabla(sqlm3)) {
+                        System.out.println("modificado con exito3r");
+                        System.out.println(sqlm3);
+                    }
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
             }
+
+            System.out.println(sqlm1);
+            System.out.println(sqlm2);
+            if (Inicio.sente.ModificarTabla(sqlm1)) {
+                System.out.println("modificado con exito1r");
+            } else {
+                System.out.println("error.no modifico1r");
+            }
+            if (Inicio.sente.ModificarTabla(sqlm2)) {
+                System.out.println("modificado con exito2r");
+            } else {
+                System.out.println("error.no modifico2r");
+            }
+            //
         } else {
             if (val.comprobarCampos()) {
                 //Insertar accidentes
@@ -550,6 +634,13 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                             String sqlrl = "Insert into rios_localidades values(" + id.getString("id_accidentes") + "," + id2.getString("id_localidad") + "," + RtxtKm.getText() + ")";
 
                             Inicio.sente.insertarTabla(sqlrl);
+                        }
+                        //--------------------------------------
+                        ResultSet id3 = Inicio.sente.consulta("select id_paises from paises where nombre='" + RComboPais.getSelectedItem() + "'");
+                        if (id3.next()) {
+                            Inicio.sente.insertarTabla("insert into accidentes_paises values("
+                                    + id.getString("id_accidentes")
+                                    + ", " + id3.getString("id_paises") + ")");
                         }
                     }
                 } catch (SQLException ex) {
@@ -579,12 +670,19 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         val.Ventero(LtxtPosH.getText(), LtxtPosH, false);
         val.Ventero(LtxtValorTipo.getText(), LtxtValorTipo, true);
         if (mod) {
-            String sql = "Update localidad set nombre='" + LtxtNombre.getText() + "', id_paises=" + ComboNom.getSelectedItem().toString().substring(0, 1) + " where id_accidentes=" + null;
-
-            if (Inicio.sente.ModificarTabla("")) {
-                System.out.println("modificado con exito");
+            String sqlm1 = "Update accidentes set nombre='" + LtxtNombre.getText() + "',posV=" + LtxtPosV.getText() + ",posH=" + LtxtPosH.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
+            String sqlm2 = "Update lagos set superficie=" + LtxtValorTipo.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
+            System.out.println(sqlm1);
+            System.out.println(sqlm2);
+            if (Inicio.sente.ModificarTabla(sqlm1)) {
+                System.out.println("modificado con exito1l");
             } else {
-                System.out.println("error.no modifico");
+                System.out.println("error.no modifico1l");
+            }
+            if (Inicio.sente.ModificarTabla(sqlm2)) {
+                System.out.println("modificado con exito2l");
+            } else {
+                System.out.println("error.no modifico2l");
             }
         } else {
             if (val.comprobarCampos()) {
@@ -606,6 +704,12 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                         /* ResultSet id2 = Inicio.sente.consulta("Select id_localidad from localidades where nombre='" + ComboNom.getSelectedItem() + "'"); 
                  String sqlrl="Insert into rios_localidades values("+ id.getString("id_accidentes")  + "," +rs +","+ RtxtKm.getText()+")";      
                  Inicio.sente.insertarTabla(sqlrl);*/
+                        ResultSet id2 = Inicio.sente.consulta("select id_paises from paises where nombre='" + RComboPais.getSelectedItem() + "'");
+                        if (id2.next()) {
+                            Inicio.sente.insertarTabla("insert into accidentes_paises values("
+                                    + id.getString("id_accidentes")
+                                    + ", " + id2.getString("id_paises") + ")");
+                        }
                     }
                 } catch (SQLException ex) {
                     System.err.println("Error: " + ex);
@@ -618,8 +722,30 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     }//GEN-LAST:event_LbtnGraActionPerformed
 
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
-        
+
     }//GEN-LAST:event_formWindowLostFocus
+
+    private void MbtnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MbtnModActionPerformed
+        new ConsultarAccidentes().setVisible(true);
+        ConsultarAccidentes.Montaña.setSelectedIndex(2);
+    }//GEN-LAST:event_MbtnModActionPerformed
+
+    private void RComboPaisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_RComboPaisItemStateChanged
+        ComboNom.removeAllItems();
+        try {
+            ResultSet id = Inicio.sente.consulta("select id_paises from paises where nombre='" + RComboPais.getSelectedItem() + "'");
+            if (id.next()) {
+                String sql = "Select * from localidades where id_paises='" + id.getString("id_paises") + "'";
+                ResultSet rs = Inicio.sente.consulta(sql);
+                while (rs.next()) {
+                    ComboNom.addItem(rs.getString("nombre"));
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NCargarAccidentes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_RComboPaisItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -658,18 +784,21 @@ public class NCargarAccidentes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JComboBox<String> ComboNom;
+    public static javax.swing.JComboBox<String> LComboPais;
     private javax.swing.JButton LbtnGra;
-    private javax.swing.JButton LbtnMod;
-    private javax.swing.JTextField LtxtNombre;
-    private javax.swing.JTextField LtxtPosH;
-    private javax.swing.JTextField LtxtPosV;
-    private javax.swing.JTextField LtxtValorTipo;
+    public static javax.swing.JButton LbtnMod;
+    public static javax.swing.JTextField LtxtNombre;
+    public static javax.swing.JTextField LtxtPosH;
+    public static javax.swing.JTextField LtxtPosV;
+    public static javax.swing.JTextField LtxtValorTipo;
+    public static javax.swing.JComboBox<String> MComboPais;
     private javax.swing.JButton MbtnGra;
-    private javax.swing.JButton MbtnMod;
-    private javax.swing.JTextField MtxtNombre;
-    private javax.swing.JTextField MtxtPosH;
-    private javax.swing.JTextField MtxtPosV;
-    private javax.swing.JTextField MtxtValorTipo;
+    public static javax.swing.JButton MbtnMod;
+    public static javax.swing.JTextField MtxtNombre;
+    public static javax.swing.JTextField MtxtPosH;
+    public static javax.swing.JTextField MtxtPosV;
+    public static javax.swing.JTextField MtxtValorTipo;
+    public static javax.swing.JComboBox<String> RComboPais;
     private javax.swing.JButton RbtnGra;
     private javax.swing.JButton RbtnMod;
     public static javax.swing.JTextField RtxtKm;
@@ -684,6 +813,9 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
