@@ -6,9 +6,11 @@
 package Ventanas;
 
 import Clases.Validar;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,9 +19,9 @@ import javax.swing.table.DefaultTableModel;
  * @author GOK accident
  */
 public class ConsultarPaises extends javax.swing.JFrame {
-    
+
     private int ID;
-    
+
     /**
      * Creates new form ConsultarPaises
      */
@@ -28,9 +30,19 @@ public class ConsultarPaises extends javax.swing.JFrame {
         initTabla();
         setResizable(false);
         setLocationRelativeTo(null);
-        
+
         Inicio.ponerTema(Inicio.tema, this, null, false);
-        
+        switch (Inicio.tema) {
+            case "Por defecto":
+                JDialogModficarPais.getContentPane().setBackground(new Color(80, 163, 231));
+                jlabelNomPais.setForeground(Color.BLACK);
+                break;
+            case "Oscuro":
+                JDialogModficarPais.getContentPane().setBackground(new Color(57, 67, 75));
+                jlabelNomPais.setForeground(Color.WHITE);
+                break;
+        }
+
         //Cargar icono
         setIconImage(new ImageIcon(getClass().getResource("../Imagenes/iconoMain.png")).getImage());
     }
@@ -76,15 +88,11 @@ public class ConsultarPaises extends javax.swing.JFrame {
         JDialogModficarPaisLayout.setHorizontalGroup(
             JDialogModficarPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JDialogModficarPaisLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
                 .addGroup(JDialogModficarPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JDialogModficarPaisLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(JDialogModficarPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlabelNomPais, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombrePais, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(JDialogModficarPaisLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(btnGuardar)))
+                    .addComponent(btnGuardar)
+                    .addComponent(jlabelNomPais, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombrePais, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
         JDialogModficarPaisLayout.setVerticalGroup(
@@ -94,9 +102,9 @@ public class ConsultarPaises extends javax.swing.JFrame {
                 .addComponent(jlabelNomPais, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNombrePais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addComponent(btnGuardar)
-                .addGap(44, 44, 44))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -176,7 +184,7 @@ public class ConsultarPaises extends javax.swing.JFrame {
         if (val.comprobarCampos()) {
             //Guardar en la base de datos
             boolean ConfirmInsert = Inicio.sente.insertarTabla("update paises set nombre='" + txtNombrePais.getText()
-                                + "' where id_paises =" + ID);
+                    + "' where id_paises =" + ID);
             if (ConfirmInsert) {
                 this.dispose();
                 JDialogModficarPais.setVisible(false);
@@ -197,7 +205,7 @@ public class ConsultarPaises extends javax.swing.JFrame {
             JDialogModficarPais.pack();
             JDialogModficarPais.setVisible(true);
             int fila = jTablePaises.getSelectedRow();
-            ID = Integer.parseInt((String)jTablePaises.getValueAt(fila, 0));
+            ID = Integer.parseInt((String) jTablePaises.getValueAt(fila, 0));
             txtNombrePais.setText((String) jTablePaises.getValueAt(fila, 1));
         } catch (ArrayIndexOutOfBoundsException e) {
             JDialogModficarPais.setVisible(false);
@@ -214,7 +222,7 @@ public class ConsultarPaises extends javax.swing.JFrame {
         this.setEnabled(false);
         try {
             int fila = jTablePaises.getSelectedRow();
-            ID = Integer.parseInt((String)jTablePaises.getValueAt(fila, 0));
+            ID = Integer.parseInt((String) jTablePaises.getValueAt(fila, 0));
             if (Inicio.sente.eliminarElemento("delete from paises where id_paises='" + ID + "'")) {
                 JOptionPane.showMessageDialog(this, "Elemento eliminado con exito");
             } else {
@@ -277,7 +285,7 @@ public class ConsultarPaises extends javax.swing.JFrame {
 
     private void initTabla() {
         //-------------------------------------------------------------
-        final String TITULOS[] = new String[]{" ", "Países"};
+        final String TITULOS[] = new String[]{"ID ", "Países"};
         DefaultTableModel dt = new DefaultTableModel(null, TITULOS);
         ResultSet rs = Inicio.sente.consulta("select * from paises");
         String columnas[] = new String[2];

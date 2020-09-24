@@ -7,11 +7,16 @@ package Ventanas;
 
 import Clases.Sentencias;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -37,6 +42,9 @@ public class Inicio extends javax.swing.JFrame {
         //Realizar conexion
         if (sente.conectar()) {
             setTitle("Accidentes geograficos: Conectado");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al intentar establecer conexión");
+            System.exit(0);
         }
 
         //Cargar la imagen de fondo
@@ -75,8 +83,8 @@ public class Inicio extends javax.swing.JFrame {
         JRadioPorDefecto = new javax.swing.JRadioButtonMenuItem();
         JRadioOscuro = new javax.swing.JRadioButtonMenuItem();
         JMenuAyuda = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItemAcercaDe = new javax.swing.JMenuItem();
+        jMenuItemManual = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Accidentes geograficos");
@@ -170,16 +178,21 @@ public class Inicio extends javax.swing.JFrame {
 
         JMenuAyuda.setText("Ayuda");
 
-        jMenuItem1.setText("Acerca de");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemAcercaDe.setText("Acerca de");
+        jMenuItemAcercaDe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItemAcercaDeActionPerformed(evt);
             }
         });
-        JMenuAyuda.add(jMenuItem1);
+        JMenuAyuda.add(jMenuItemAcercaDe);
 
-        jMenuItem2.setText("Manual de usuario");
-        JMenuAyuda.add(jMenuItem2);
+        jMenuItemManual.setText("Manual de usuario");
+        jMenuItemManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemManualActionPerformed(evt);
+            }
+        });
+        JMenuAyuda.add(jMenuItemManual);
 
         jMenuBar1.add(JMenuAyuda);
 
@@ -239,13 +252,22 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JRadioOscuroActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItemAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAcercaDeActionPerformed
         new AcercaDe().setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuItemAcercaDeActionPerformed
 
     private void JMIConsultAccidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIConsultAccidenteActionPerformed
         new ConsultarAccidentes().setVisible(true);
     }//GEN-LAST:event_JMIConsultAccidenteActionPerformed
+
+    private void jMenuItemManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemManualActionPerformed
+        try {
+            File path = new File("src/Imagenes/manual.pdf");
+            Desktop.getDesktop().open(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItemManualActionPerformed
 
     static void ponerTema(String tema, JFrame contenedor, JLabel[] labels, boolean poseelabal) {
         switch (tema) {
@@ -259,6 +281,31 @@ public class Inicio extends javax.swing.JFrame {
                 break;
             case "Oscuro":
                 contenedor.getContentPane().setBackground(new Color(57, 67, 75));
+                if (poseelabal) {
+                    for (int i = 0; i < labels.length; i++) {
+                        labels[i].setForeground(Color.WHITE);
+                    }
+                }
+                break;
+        }
+    }
+
+    static void ponerTemaPanel(String tema, JPanel[] contenedor, JLabel[] labels, boolean poseelabal) {
+        switch (tema) {
+            case "Por defecto":
+                for (int i = 0; i < contenedor.length; i++) {
+                    contenedor[i].setBackground(new Color(80, 163, 231));
+                }
+                if (poseelabal) {
+                    for (int i = 0; i < labels.length; i++) {
+                        labels[i].setForeground(Color.BLACK);
+                    }
+                }
+                break;
+            case "Oscuro":
+                for (int i = 0; i < contenedor.length; i++) {
+                    contenedor[i].setBackground(new Color(57, 67, 75));
+                }
                 if (poseelabal) {
                     for (int i = 0; i < labels.length; i++) {
                         labels[i].setForeground(Color.WHITE);
@@ -318,8 +365,8 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCargar;
     private javax.swing.JMenu jMenuConsultar;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItemAcercaDe;
+    private javax.swing.JMenuItem jMenuItemManual;
     private javax.swing.JMenu jMenuTema;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;

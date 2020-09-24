@@ -10,7 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -25,6 +28,19 @@ public class NCargarAccidentes extends javax.swing.JFrame {
 
     public NCargarAccidentes() {
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setSize(437, 381);
+        setTitle("Accidente");
+
+        //Cargar icono
+        setIconImage(new ImageIcon(getClass().getResource("../Imagenes/iconoMain.png")).getImage());
+
+        Inicio.ponerTemaPanel(Inicio.tema, new JPanel[]{jPanelRios, jPanelMontanas, jPanelLagos},
+                new JLabel[]{jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6,
+                    jLabel7, jLabel8, jLabel9, jLabel10, jLabel11, jLabel12, jLabel13, jLabel14,
+                    jLabel15, jLabel16, jLabel17}, true);
+        //-----------------------------------------------------------------------------------------
         try {
             String sql = "Select * from paises";
             ResultSet rs = Inicio.sente.consulta(sql);
@@ -51,7 +67,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        RtxtPosH = new javax.swing.JPanel();
+        jPanelRios = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         RtxtNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -68,7 +84,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         RtxtKm = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         RComboPais = new javax.swing.JComboBox<>();
-        jPanel3 = new javax.swing.JPanel();
+        jPanelLagos = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         LtxtNombre = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -81,7 +97,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         LbtnMod = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         LComboPais = new javax.swing.JComboBox<>();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelMontanas = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         MtxtNombre = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -96,6 +112,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         MComboPais = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
             }
@@ -138,7 +155,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             }
         });
 
-        RbtnMod.setText("Consultar");
+        RbtnMod.setText("Registro ríos");
         RbtnMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RbtnModActionPerformed(evt);
@@ -168,83 +185,90 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout RtxtPosHLayout = new javax.swing.GroupLayout(RtxtPosH);
-        RtxtPosH.setLayout(RtxtPosHLayout);
-        RtxtPosHLayout.setHorizontalGroup(
-            RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RtxtPosHLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(RtxtPosHLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(RtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(RtxtPosHLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RtxtKm, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(RtxtPosHLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RtxtPosiH, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(RtxtPosHLayout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(RtxtPosHLayout.createSequentialGroup()
-                                .addComponent(RbtnGra)
-                                .addGap(104, 104, 104)
-                                .addComponent(RbtnMod))
-                            .addGroup(RtxtPosHLayout.createSequentialGroup()
-                                .addComponent(RComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ComboNom, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(67, Short.MAX_VALUE))
-        );
-        RtxtPosHLayout.setVerticalGroup(
-            RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RtxtPosHLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(RtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)
-                        .addComponent(RtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
-                .addGap(48, 48, 48)
-                .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(RtxtKm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(RtxtPosiH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(ComboNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout jPanelRiosLayout = new javax.swing.GroupLayout(jPanelRios);
+        jPanelRios.setLayout(jPanelRiosLayout);
+        jPanelRiosLayout.setHorizontalGroup(
+            jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRiosLayout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRiosLayout.createSequentialGroup()
+                        .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(RtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(RComboPais, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(RtxtPosiH, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(RtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRiosLayout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(ComboNom, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanelRiosLayout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanelRiosLayout.createSequentialGroup()
+                                            .addGap(2, 2, 2)
+                                            .addComponent(jLabel10))
+                                        .addComponent(RtxtKm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel4)
+                                        .addComponent(RtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addComponent(jLabel15)
-                    .addComponent(RComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(RtxtPosHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RbtnMod)
-                    .addComponent(RbtnGra))
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addGroup(jPanelRiosLayout.createSequentialGroup()
+                        .addComponent(RbtnGra)
+                        .addGap(18, 18, 18)
+                        .addComponent(RbtnMod)))
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
+        jPanelRiosLayout.setVerticalGroup(
+            jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRiosLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRiosLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(RtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelRiosLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(RtxtKm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RtxtPosiH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelRiosLayout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(7, 7, 7)
+                        .addComponent(RComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelRiosLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(34, 34, 34))
+                    .addComponent(ComboNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RbtnGra)
+                    .addComponent(RbtnMod))
+                .addGap(32, 32, 32))
         );
 
-        jTabbedPane1.addTab("Rios", RtxtPosH);
+        jTabbedPane1.addTab("Rios", jPanelRios);
 
         jLabel6.setText("nombre:");
 
@@ -267,7 +291,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             }
         });
 
-        LbtnMod.setText("Consultar");
+        LbtnMod.setText("Registro lagos");
         LbtnMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LbtnModActionPerformed(evt);
@@ -276,77 +300,77 @@ public class NCargarAccidentes extends javax.swing.JFrame {
 
         jLabel16.setText("Pais: ");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LtxtPosH))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LtxtPosV))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+        LComboPais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LComboPaisActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelLagosLayout = new javax.swing.GroupLayout(jPanelLagos);
+        jPanelLagos.setLayout(jPanelLagosLayout);
+        jPanelLagosLayout.setHorizontalGroup(
+            jPanelLagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLagosLayout.createSequentialGroup()
+                .addGroup(jPanelLagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelLagosLayout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addGroup(jPanelLagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8)
+                            .addComponent(LtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LtxtPosH, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanelLagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLagosLayout.createSequentialGroup()
+                                    .addGroup(jPanelLagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel16)
+                                        .addComponent(jLabel9))
+                                    .addGap(51, 51, 51))
+                                .addComponent(LComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LtxtValorTipo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelLagosLayout.createSequentialGroup()
                         .addGap(72, 72, 72)
                         .addComponent(LbtnGra)
-                        .addGap(98, 98, 98)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LbtnMod)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(70, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(LbtnMod)))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel16)
-                        .addComponent(LComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanelLagosLayout.setVerticalGroup(
+            jPanelLagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLagosLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jPanelLagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelLagosLayout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addComponent(LtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(LtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(47, 47, 47)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(LtxtPosH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelLagosLayout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelLagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(LtxtPosH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelLagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LbtnGra)
                     .addComponent(LbtnMod))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Lagos", jPanel3);
+        jTabbedPane1.addTab("Lagos", jPanelLagos);
 
         jLabel11.setText("Nombre:");
 
@@ -374,7 +398,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             }
         });
 
-        MbtnMod.setText("Consultar");
+        MbtnMod.setText("Registro Montañas");
         MbtnMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MbtnModActionPerformed(evt);
@@ -390,86 +414,75 @@ public class NCargarAccidentes extends javax.swing.JFrame {
 
         jLabel17.setText("Pais: ");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(MtxtPosH, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(194, 194, 194)
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(MtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(MtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(MComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(MtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
+        javax.swing.GroupLayout jPanelMontanasLayout = new javax.swing.GroupLayout(jPanelMontanas);
+        jPanelMontanas.setLayout(jPanelMontanasLayout);
+        jPanelMontanasLayout.setHorizontalGroup(
+            jPanelMontanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMontanasLayout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addGroup(jPanelMontanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(MtxtPosH, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelMontanasLayout.createSequentialGroup()
                         .addComponent(MbtnGra)
-                        .addGap(81, 81, 81)
-                        .addComponent(MbtnMod)))
-                .addContainerGap(92, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(MbtnMod))
+                    .addGroup(jPanelMontanasLayout.createSequentialGroup()
+                        .addGroup(jPanelMontanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13)
+                            .addGroup(jPanelMontanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(MtxtPosV, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(MtxtNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)))
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanelMontanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel17)
+                            .addComponent(MtxtValorTipo)
+                            .addComponent(MComboPais, 0, 109, Short.MAX_VALUE))))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jPanelMontanasLayout.setVerticalGroup(
+            jPanelMontanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMontanasLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel17)
-                        .addComponent(MComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel11)
-                        .addComponent(MtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(MtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelMontanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel17))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelMontanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(jPanelMontanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(MtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(MtxtPosH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelMontanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(MtxtPosH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addGroup(jPanelMontanasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MbtnMod)
                     .addComponent(MbtnGra))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Montañas", jPanel2);
+        jTabbedPane1.addTab("Montañas", jPanelMontanas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -505,36 +518,45 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     }//GEN-LAST:event_RbtnModActionPerformed
 //MONTAÑA
     private void MbtnGraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MbtnGraActionPerformed
+        int comprobar = 0;
         Validar val = new Validar(4);
         val.Vcadena(MtxtNombre.getText(), MtxtNombre);
         val.Ventero(MtxtPosV.getText(), MtxtPosV, false);
         val.Ventero(MtxtPosH.getText(), MtxtPosH, false);
         val.Ventero(MtxtValorTipo.getText(), MtxtValorTipo, true);
-        if (mod) {
-            String sqlm1 = "Update accidentes set nombre='" + MtxtNombre.getText() + "',posV=" + MtxtPosV.getText() + ",posH=" + MtxtPosH.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
-            String sqlm2 = "Update montañas set altura=" + MtxtValorTipo.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
+        if (val.comprobarCampos()) {
+            if (mod) {
+                String sqlm1 = "Update accidentes set nombre='" + MtxtNombre.getText() + "',posV=" + MtxtPosV.getText() + ",posH=" + MtxtPosH.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
+                String sqlm2 = "Update montañas set altura=" + MtxtValorTipo.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
 
-            if (Inicio.sente.ModificarTabla(sqlm1)) {
-                System.out.println("modificado con exito1m");
+                if (Inicio.sente.ModificarTabla(sqlm1)) {
+                    comprobar++;
+                } else {
+                    comprobar--;
+                }
+                if (Inicio.sente.ModificarTabla(sqlm2)) {
+                    comprobar++;
+                } else {
+                    comprobar--;
+                }
+
+                if (comprobar == 2) {
+                    JOptionPane.showMessageDialog(this, "Modifcado satisfactoriamente");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ha ocurrido un error al insertar el accidente");
+                }
+                mod = false;
             } else {
-                System.out.println("error.no modifico1m");
-            }
-            if (Inicio.sente.ModificarTabla(sqlm2)) {
-                System.out.println("modificado con exito2m");
-            } else {
-                System.out.println("error.no modifico2m");
-            }
-            mod = false;
-        } else {
-            if (val.comprobarCampos()) {
                 //Insertar accidentes
                 String sql = "Insert into accidentes values(" + null
                         + ", '" + MtxtNombre.getText()
                         + "', " + MtxtPosV.getText()
                         + ", " + MtxtPosH.getText() + ") ";
-                System.out.println(sql);
                 if (Inicio.sente.insertarTabla(sql)) {
-                    JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente");
+                    comprobar++;
+                } else {
+                    comprobar--;
                 }
                 //Insertar Montaña con ID traido desde bs
                 try {
@@ -550,20 +572,23 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                                     + ", " + id2.getString("id_paises") + ")");
                         }
                     }
+                    comprobar++;
                 } catch (SQLException ex) {
-                    System.err.println("Error: " + ex);
+                    System.err.println(ex);
+                    comprobar--;
                 }
-
-            } else {
-                JOptionPane.showMessageDialog(this, "Debe rellenar los campos satisfactoriamente");
+                
+                if (comprobar == 2) {
+                    JOptionPane.showMessageDialog(this, "Modifcado satisfactoriamente");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ha ocurrido un error al insertar el accidente");
+                }
             }
         }
-
-
     }//GEN-LAST:event_MbtnGraActionPerformed
 
     private void LbtnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LbtnModActionPerformed
-
         new ConsultarAccidentes().setVisible(true);
         ConsultarAccidentes.Montaña.setSelectedIndex(1);
     }//GEN-LAST:event_LbtnModActionPerformed
@@ -573,58 +598,66 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboNomActionPerformed
 //RIOS
     private void RbtnGraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtnGraActionPerformed
-        Validar val = new Validar(4);
+        int comprobar = 0;
+        Validar val = new Validar(5);
         val.Vcadena(RtxtNombre.getText(), RtxtNombre);
         val.Ventero(RtxtPosV.getText(), RtxtPosV, false);
         val.Ventero(RtxtPosiH.getText(), RtxtPosiH, false);
         val.Ventero(RtxtValorTipo.getText(), RtxtValorTipo, true);
-        //
-        if (mod) {
-            String sqlm1 = "Update accidentes set nombre='" + RtxtNombre.getText() + "',posV=" + RtxtPosV.getText() + ",posH=" + RtxtPosiH.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
-            String sqlm2 = "Update rios set longitud=" + RtxtValorTipo.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
-            String sqlm3;
-            try {
-                ResultSet idLocalidad = Inicio.sente.consulta("select id_localidad from rios_localidades where id_accidentes=" + ConsultarAccidentes.id);
-                if (idLocalidad.next()) {
-                    sqlm3 = "UPDATE rios_localidades set km=" + RtxtKm.getText()
-                            + " WHERE id_accidentes=" + ConsultarAccidentes.id + " AND "
-                            + "id_localidad=" + idLocalidad.getString("id_localidad");
-                    if (Inicio.sente.ModificarTabla(sqlm3)) {
-                        System.out.println("modificado con exito3r");
-                        System.out.println(sqlm3);
+        val.Ventero(RtxtKm.getText(), RtxtKm, true);
+        if (val.comprobarCampos()) {
+            if (mod) {
+                String sqlm1 = "Update accidentes set nombre='" + RtxtNombre.getText() + "',posV=" + RtxtPosV.getText() + ",posH=" + RtxtPosiH.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
+                String sqlm2 = "Update rios set longitud=" + RtxtValorTipo.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
+                String sqlm3;
+                try {
+                    ResultSet idLocalidad = Inicio.sente.consulta("select id_localidad from rios_localidades where id_accidentes=" + ConsultarAccidentes.id);
+                    if (idLocalidad.next()) {
+                        sqlm3 = "UPDATE rios_localidades set km=" + RtxtKm.getText()
+                                + " WHERE id_accidentes=" + ConsultarAccidentes.id + " AND "
+                                + "id_localidad=" + idLocalidad.getString("id_localidad");
+                        if (Inicio.sente.ModificarTabla(sqlm3)) {
+                            comprobar++;
+                        }
                     }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                    comprobar--;
                 }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
+                //----------------------------------------------------
+                if (Inicio.sente.ModificarTabla(sqlm1)) {
+                    comprobar++;
+                } else {
+                    comprobar--;
+                }
+                if (Inicio.sente.ModificarTabla(sqlm2)) {
+                    comprobar++;
+                } else {
+                    comprobar--;
+                }
 
-            System.out.println(sqlm1);
-            System.out.println(sqlm2);
-            if (Inicio.sente.ModificarTabla(sqlm1)) {
-                System.out.println("modificado con exito1r");
+                if (comprobar == 3) {
+                    JOptionPane.showMessageDialog(this, "Modifcado satisfactoriamente");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ha ocurrido un error al insertar el accidente");
+                }
+                mod = false;
             } else {
-                System.out.println("error.no modifico1r");
-            }
-            if (Inicio.sente.ModificarTabla(sqlm2)) {
-                System.out.println("modificado con exito2r");
-            } else {
-                System.out.println("error.no modifico2r");
-            }
-            //
-        } else {
-            if (val.comprobarCampos()) {
                 //Insertar accidentes
                 String sql = "Insert into accidentes values(" + null
                         + ", '" + RtxtNombre.getText()
                         + "', " + RtxtPosV.getText()
                         //+ "', " + RtxtKm.getText()
                         + ", " + RtxtPosiH.getText() + ") ";
-                System.out.println(sql);
                 if (Inicio.sente.insertarTabla(sql)) {
-                    JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente");
+                    comprobar++;
+                } else {
+                    comprobar--;
                 }
                 //Insertar Rios con ID traido desde bs
                 try {
+                    comprobar++;
                     ResultSet id = Inicio.sente.consulta("Select id_accidentes from accidentes where nombre='" + RtxtNombre.getText() + "'");
                     if (id.next()) {
                         String sqlr = "Insert into rios values(" + RtxtValorTipo.getText() + "," + id.getString("id_accidentes") + ")";
@@ -632,7 +665,6 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                         ResultSet id2 = Inicio.sente.consulta("Select id_localidad from localidades where nombre='" + ComboNom.getSelectedItem() + "'");
                         if (id2.next()) {
                             String sqlrl = "Insert into rios_localidades values(" + id.getString("id_accidentes") + "," + id2.getString("id_localidad") + "," + RtxtKm.getText() + ")";
-
                             Inicio.sente.insertarTabla(sqlrl);
                         }
                         //--------------------------------------
@@ -645,12 +677,18 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                     }
                 } catch (SQLException ex) {
                     System.err.println("Error: " + ex);
+                    comprobar--;
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "Debe rellenar los campos satisfactoriamente");
-            }
 
-            //Insertar Rios_localidades
+                if (comprobar == 2) {
+                    JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ha ocurrido un error al insertar el accidente");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe rellenar los campos correctamente");
         }
 
     }//GEN-LAST:event_RbtnGraActionPerformed
@@ -664,36 +702,44 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     }//GEN-LAST:event_RtxtValorTipoActionPerformed
 
     private void LbtnGraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LbtnGraActionPerformed
+        int comprobar = 0;
         Validar val = new Validar(4);
         val.Vcadena(LtxtNombre.getText(), LtxtNombre);
         val.Ventero(LtxtPosV.getText(), LtxtPosV, false);
         val.Ventero(LtxtPosH.getText(), LtxtPosH, false);
         val.Ventero(LtxtValorTipo.getText(), LtxtValorTipo, true);
-        if (mod) {
-            String sqlm1 = "Update accidentes set nombre='" + LtxtNombre.getText() + "',posV=" + LtxtPosV.getText() + ",posH=" + LtxtPosH.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
-            String sqlm2 = "Update lagos set superficie=" + LtxtValorTipo.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
-            System.out.println(sqlm1);
-            System.out.println(sqlm2);
-            if (Inicio.sente.ModificarTabla(sqlm1)) {
-                System.out.println("modificado con exito1l");
+        if (val.comprobarCampos()) {
+            if (mod) {
+                String sqlm1 = "Update accidentes set nombre='" + LtxtNombre.getText() + "',posV=" + LtxtPosV.getText() + ",posH=" + LtxtPosH.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
+                String sqlm2 = "Update lagos set superficie=" + LtxtValorTipo.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
+                if (Inicio.sente.ModificarTabla(sqlm1)) {
+                    comprobar++;
+                } else {
+                    comprobar--;
+                }
+                if (Inicio.sente.ModificarTabla(sqlm2)) {
+                    comprobar++;
+                } else {
+                    comprobar--;
+                }
+
+                if (comprobar == 2) {
+                    JOptionPane.showMessageDialog(this, "Modifcado satisfactoriamente");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ha ocurrido un error al insertar el accidente");
+                }
+                mod = false;
             } else {
-                System.out.println("error.no modifico1l");
-            }
-            if (Inicio.sente.ModificarTabla(sqlm2)) {
-                System.out.println("modificado con exito2l");
-            } else {
-                System.out.println("error.no modifico2l");
-            }
-        } else {
-            if (val.comprobarCampos()) {
                 //Insertar accidentes
                 String sql = "Insert into accidentes values(" + null
                         + ", '" + LtxtNombre.getText()
                         + "', " + LtxtPosV.getText()
                         + ", " + LtxtPosH.getText() + ") ";
-                System.out.println(sql);
                 if (Inicio.sente.insertarTabla(sql)) {
-                    JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente");
+                    comprobar++;
+                } else {
+                    comprobar--;
                 }
                 //Insertar Lagos con ID traido desde bs
                 try {
@@ -701,9 +747,6 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                     if (id.next()) {
                         String sqlr = "Insert into lagos values(" + LtxtValorTipo.getText() + "," + id.getString("id_accidentes") + ")";
                         Inicio.sente.insertarTabla(sqlr);
-                        /* ResultSet id2 = Inicio.sente.consulta("Select id_localidad from localidades where nombre='" + ComboNom.getSelectedItem() + "'"); 
-                 String sqlrl="Insert into rios_localidades values("+ id.getString("id_accidentes")  + "," +rs +","+ RtxtKm.getText()+")";      
-                 Inicio.sente.insertarTabla(sqlrl);*/
                         ResultSet id2 = Inicio.sente.consulta("select id_paises from paises where nombre='" + RComboPais.getSelectedItem() + "'");
                         if (id2.next()) {
                             Inicio.sente.insertarTabla("insert into accidentes_paises values("
@@ -711,13 +754,21 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                                     + ", " + id2.getString("id_paises") + ")");
                         }
                     }
+                    comprobar++;
                 } catch (SQLException ex) {
-                    System.err.println("Error: " + ex);
+                    System.err.println(ex);
+                    comprobar--;
                 }
 
-            } else {
-                JOptionPane.showMessageDialog(this, "Debe rellenar los campos satisfactoriamente");
+                if (comprobar == 2) {
+                    JOptionPane.showMessageDialog(this, "Modifcado satisfactoriamente");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ha ocurrido un error al insertar el accidente");
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe introducir los campos correctamente");
         }
     }//GEN-LAST:event_LbtnGraActionPerformed
 
@@ -746,6 +797,10 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             Logger.getLogger(NCargarAccidentes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_RComboPaisItemStateChanged
+
+    private void LComboPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LComboPaisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LComboPaisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -803,7 +858,6 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     private javax.swing.JButton RbtnMod;
     public static javax.swing.JTextField RtxtKm;
     public static javax.swing.JTextField RtxtNombre;
-    private javax.swing.JPanel RtxtPosH;
     public static javax.swing.JTextField RtxtPosV;
     public static javax.swing.JTextField RtxtPosiH;
     public static javax.swing.JTextField RtxtValorTipo;
@@ -824,8 +878,9 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanelLagos;
+    private javax.swing.JPanel jPanelMontanas;
+    private javax.swing.JPanel jPanelRios;
     public static javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }

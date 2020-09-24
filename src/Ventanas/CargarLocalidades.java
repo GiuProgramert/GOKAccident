@@ -7,6 +7,7 @@ package Ventanas;
 
 import Clases.Validar;
 import Clases.Sentencias;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -30,8 +31,7 @@ public class CargarLocalidades extends javax.swing.JFrame {
         cargarPais();
         setLocationRelativeTo(null);
         setResizable(false);
-        Inicio.ponerTema(Inicio.tema, this, new JLabel[]{jLabel1, jLabel2, jLabel3, jLabel4}, true);
-        
+        Inicio.ponerTema(Inicio.tema, this, new JLabel[]{jLabel1, jLabel2, jLabel3, jLabel4}, true);      
         //Cargar icono
         setIconImage(new ImageIcon(getClass().getResource("../Imagenes/iconoMain.png")).getImage());
     }

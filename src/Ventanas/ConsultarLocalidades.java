@@ -6,6 +6,7 @@
 package Ventanas;
 
 import Clases.*;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
@@ -17,8 +18,9 @@ import javax.swing.table.DefaultTableModel;
  * @author GOK accident
  */
 public class ConsultarLocalidades extends javax.swing.JFrame {
+
     private int id, id2;
-    
+
     /**
      * Creates new form ConsultarLocalidades
      */
@@ -26,9 +28,19 @@ public class ConsultarLocalidades extends javax.swing.JFrame {
         initComponents();
         initTabla();
         setLocationRelativeTo(null);
-        
+
         Inicio.ponerTema(Inicio.tema, this, null, false);
-        
+        switch (Inicio.tema) {
+            case "Por defecto":
+                jDialogModificarLocalidad.getContentPane().setBackground(new Color(80, 163, 231));
+                jLabel4.setForeground(Color.BLACK);
+                break;
+            case "Oscuro":
+                jDialogModificarLocalidad.getContentPane().setBackground(new Color(57, 67, 75));
+                jLabel4.setForeground(Color.WHITE);
+                break;
+        }
+
         //Cargar icono
         setIconImage(new ImageIcon(getClass().getResource("../Imagenes/iconoMain.png")).getImage());
     }
@@ -79,24 +91,23 @@ public class ConsultarLocalidades extends javax.swing.JFrame {
         jDialogModificarLocalidadLayout.setHorizontalGroup(
             jDialogModificarLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialogModificarLocalidadLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(jDialogModificarLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(btnGuardar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61))
+                .addGap(47, 47, 47)
+                .addGroup(jDialogModificarLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGuardar)
+                    .addComponent(txtLocalidad))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         jDialogModificarLocalidadLayout.setVerticalGroup(
             jDialogModificarLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialogModificarLocalidadLayout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addGroup(jDialogModificarLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
+                .addGap(29, 29, 29)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(btnGuardar)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
         );
 
         jTableLocalidades1.setModel(new javax.swing.table.DefaultTableModel(
@@ -200,29 +211,29 @@ public class ConsultarLocalidades extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {  
-            boolean ConfirmInsert = Inicio.sente.insertarTabla("update localidades set nombre='" +txtLocalidad.getText()
-                                + "' where id_paises =" + id);
-            if (ConfirmInsert) {
-                this.dispose();
-                
-                JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente");
-            } else {
-                JOptionPane.showMessageDialog(this, "Posible error en base de datos");
-            }
-    }                                         
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {
+        boolean ConfirmInsert = Inicio.sente.insertarTabla("update localidades set nombre='" + txtLocalidad.getText()
+                + "' where id_paises =" + id);
+        if (ConfirmInsert) {
+            this.dispose();
+
+            JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente");
+        } else {
+            JOptionPane.showMessageDialog(this, "Posible error en base de datos");
+        }
+    }
 
     private void btnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModActionPerformed
         // TODO add your handling code here:
-          this.setEnabled(false);
+        this.setEnabled(false);
         try {
             jDialogModificarLocalidad.setResizable(false);
             jDialogModificarLocalidad.setLocationRelativeTo(null);
             jDialogModificarLocalidad.pack();
             jDialogModificarLocalidad.setVisible(true);
             int fila = jTableLocalidades.getSelectedRow();
-            id = Integer.parseInt((String)jTableLocalidades.getValueAt(fila, 0));
-            txtLocalidad.setText((String)jTableLocalidades.getValueAt(fila, 1));
+            id = Integer.parseInt((String) jTableLocalidades.getValueAt(fila, 0));
+            txtLocalidad.setText((String) jTableLocalidades.getValueAt(fila, 1));
         } catch (ArrayIndexOutOfBoundsException e) {
             jDialogModificarLocalidad.setVisible(false);
             JOptionPane.showMessageDialog(this, "Debe seleccionar un elemento");
@@ -231,10 +242,10 @@ public class ConsultarLocalidades extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-         this.setEnabled(false);
+        this.setEnabled(false);
         try {
             int fila = jTableLocalidades.getSelectedRow();
-            id = Integer.parseInt((String)jTableLocalidades.getValueAt(fila, 0));
+            id = Integer.parseInt((String) jTableLocalidades.getValueAt(fila, 0));
             if (Inicio.sente.eliminarElemento("delete from localidades where id_localidad='" + id + "'")) {
                 JOptionPane.showMessageDialog(this, "Elemento eliminado con exito");
             } else {
@@ -264,8 +275,8 @@ public class ConsultarLocalidades extends javax.swing.JFrame {
         // TODO add your handling code here:
         Validar val = new Validar(1);
         String nombreLocalidad = val.Vcadena(txtLocalidad.getText(), txtLocalidad);
-            boolean ConfirmInsert = Inicio.sente.insertarTabla("update localidades set nombre='" + nombreLocalidad
-                                + "' where id_localidad =" + id);
+        boolean ConfirmInsert = Inicio.sente.insertarTabla("update localidades set nombre='" + nombreLocalidad
+                + "' where id_localidad =" + id);
         if (val.comprobarCampos()) {
             if (ConfirmInsert) {
                 this.dispose();
@@ -273,8 +284,8 @@ public class ConsultarLocalidades extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Posible error en base de datos");
-            }       
-        }else {
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar los campos correctamente");
         }
 
@@ -323,12 +334,13 @@ public class ConsultarLocalidades extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void initTabla() {
         //-------------------------------------------------------------
-        final String TITULOS[] = new String[]{" ", "Países"," "};
+        final String TITULOS[] = new String[]{"ID ", "Localidad", "Pais"};
         DefaultTableModel dt = new DefaultTableModel(null, TITULOS);
-        ResultSet rs = Inicio.sente.consulta("select * from localidades");
+        ResultSet rs = Inicio.sente.consulta("select l.id_localidad, l.nombre, p.nombre from localidades l, paises p\n"
+                + "WHERE l.id_paises = p.id_paises");
         String columnas[] = new String[3];
         //-------------------------------------------------------------
         try {
@@ -361,5 +373,5 @@ public class ConsultarLocalidades extends javax.swing.JFrame {
     private javax.swing.JTable jTableLocalidades1;
     private javax.swing.JTextField txtLocalidad;
     // End of variables declaration//GEN-END:variables
- 
+
 }

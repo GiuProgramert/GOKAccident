@@ -9,7 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,8 +29,16 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
      */
     public ConsultarAccidentes() {
         initComponents();
+        //Diseño
+        Inicio.ponerTemaPanel(Inicio.tema, new JPanel[]{jPanel1, jPanel2, jPanel3}, null, false);
+        setTitle("Consultar accidentas");
+        setLocationRelativeTo(null);
+        //Cargar icono
+        setIconImage(new ImageIcon(getClass().getResource("../Imagenes/iconoMain.png")).getImage());
+        
+        
         //---------------Rios--------------------------
-        final String TITULOS[] = new String[]{" ", "Nombre", "Pos V", "Pos H", "Longitud", "Km", "Localidad", "Pais"};
+        final String TITULOS[] = new String[]{"ID ", "Nombre", "Pos V", "Pos H", "Longitud", "Km", "Localidad", "Pais"};
         DefaultTableModel dt = new DefaultTableModel(null, TITULOS);
         ResultSet rs = Inicio.sente.consulta("SELECT a.id_accidentes,a.nombre,a.posV,a.posH,r.longitud,rl.km,l.nombre, p.nombre\n"
                 + "FROM accidentes a, accidentes_paises ap, rios r, rios_localidades rl, localidades l, paises p\n"
@@ -50,7 +60,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         }
 
         //---------------Lagos--------------------------
-        final String TITULOSL[] = new String[]{" ", "Nombre", "Pos V", "Pos H", "superficie", "Pais"};
+        final String TITULOSL[] = new String[]{"ID ", "Nombre", "Pos V", "Pos H", "superficie", "Pais"};
         DefaultTableModel dtL = new DefaultTableModel(null, TITULOSL);
         ResultSet rsL = Inicio.sente.consulta("SELECT a.id_accidentes, a.nombre, a.posV, a.posH, L.superficie, p.nombre \n"
                 + "FROM accidentes a,lagos L, accidentes_paises ap, paises p\n"
@@ -69,7 +79,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         } catch (SQLException e) {
         }
         //---------------Montañas--------------------------
-        final String TITULOSM[] = new String[]{" ", "Nombre", "Pos V", "Pos H", "Altura", "Pais"};
+        final String TITULOSM[] = new String[]{"ID ", "Nombre", "Pos V", "Pos H", "Altura", "Pais"};
         DefaultTableModel dtM = new DefaultTableModel(null, TITULOSM);
         ResultSet rsM = Inicio.sente.consulta("SELECT a.id_accidentes, a.nombre, a.posV, a.posH, M.altura, p.nombre \n"
                 + "FROM accidentes a,montañas M , accidentes_paises ap, paises p\n"
@@ -157,22 +167,24 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnModR)
                     .addComponent(jbtnElimR))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         Montaña.addTab("Ríos", jPanel1);
+
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(300, 64));
 
         jTableLago.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -207,12 +219,12 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(jbtnModL)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(jbtnElimL)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -220,12 +232,12 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnModL)
                     .addComponent(jbtnElimL))
-                .addGap(0, 33, Short.MAX_VALUE))
+                .addGap(0, 24, Short.MAX_VALUE))
         );
 
         Montaña.addTab("Lagos", jPanel2);
@@ -263,12 +275,12 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(jbtnModM)
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
                 .addComponent(jbtnElimM)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -276,12 +288,12 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnModM)
                     .addComponent(jbtnElimM))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         Montaña.addTab("Montañas", jPanel3);
