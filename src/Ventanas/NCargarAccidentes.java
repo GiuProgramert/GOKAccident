@@ -488,34 +488,10 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RtxtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtxtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RtxtNombreActionPerformed
+    private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
 
-    private void LtxtPosHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LtxtPosHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LtxtPosHActionPerformed
+    }//GEN-LAST:event_formWindowLostFocus
 
-    private void MtxtPosVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MtxtPosVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MtxtPosVActionPerformed
-
-    private void MtxtPosHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MtxtPosHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MtxtPosHActionPerformed
-
-    private void MtxtValorTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MtxtValorTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MtxtValorTipoActionPerformed
-
-    private void RtxtPosiHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtxtPosiHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RtxtPosiHActionPerformed
-
-    private void RbtnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtnModActionPerformed
-        new ConsultarAccidentes().setVisible(true);
-        ConsultarAccidentes.Montaña.setSelectedIndex(0);
-    }//GEN-LAST:event_RbtnModActionPerformed
 //MONTAÑA
     private void MbtnGraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MbtnGraActionPerformed
         int comprobar = 0;
@@ -550,9 +526,9 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             } else {
                 //Insertar accidentes
                 String sql = "Insert into accidentes values(" + null
-                        + ", '" + MtxtNombre.getText()
-                        + "', " + MtxtPosV.getText()
-                        + ", " + MtxtPosH.getText() + ") ";
+                + ", '" + MtxtNombre.getText()
+                + "', " + MtxtPosV.getText()
+                + ", " + MtxtPosH.getText() + ") ";
                 if (Inicio.sente.insertarTabla(sql)) {
                     comprobar++;
                 } else {
@@ -568,8 +544,8 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                         ResultSet id2 = Inicio.sente.consulta("select id_paises from paises where nombre='" + MComboPais.getSelectedItem() + "'");
                         if (id2.next()) {
                             Inicio.sente.insertarTabla("insert into accidentes_paises values("
-                                    + id.getString("id_accidentes")
-                                    + ", " + id2.getString("id_paises") + ")");
+                                + id.getString("id_accidentes")
+                                + ", " + id2.getString("id_paises") + ")");
                         }
                     }
                     comprobar++;
@@ -577,7 +553,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                     System.err.println(ex);
                     comprobar--;
                 }
-                
+
                 if (comprobar == 2) {
                     JOptionPane.showMessageDialog(this, "Modifcado satisfactoriamente");
                     this.dispose();
@@ -588,118 +564,31 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_MbtnGraActionPerformed
 
+    private void MbtnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MbtnModActionPerformed
+        new ConsultarAccidentes().setVisible(true);
+        ConsultarAccidentes.Montaña.setSelectedIndex(2);
+    }//GEN-LAST:event_MbtnModActionPerformed
+
+    private void MtxtValorTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MtxtValorTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MtxtValorTipoActionPerformed
+
+    private void MtxtPosHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MtxtPosHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MtxtPosHActionPerformed
+
+    private void MtxtPosVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MtxtPosVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MtxtPosVActionPerformed
+
+    private void LComboPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LComboPaisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LComboPaisActionPerformed
+
     private void LbtnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LbtnModActionPerformed
         new ConsultarAccidentes().setVisible(true);
         ConsultarAccidentes.Montaña.setSelectedIndex(1);
     }//GEN-LAST:event_LbtnModActionPerformed
-
-    private void ComboNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboNomActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ComboNomActionPerformed
-//RIOS
-    private void RbtnGraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtnGraActionPerformed
-        int comprobar = 0;
-        Validar val = new Validar(5);
-        val.Vcadena(RtxtNombre.getText(), RtxtNombre);
-        val.Ventero(RtxtPosV.getText(), RtxtPosV, false);
-        val.Ventero(RtxtPosiH.getText(), RtxtPosiH, false);
-        val.Ventero(RtxtValorTipo.getText(), RtxtValorTipo, true);
-        val.Ventero(RtxtKm.getText(), RtxtKm, true);
-        if (val.comprobarCampos()) {
-            if (mod) {
-                String sqlm1 = "Update accidentes set nombre='" + RtxtNombre.getText() + "',posV=" + RtxtPosV.getText() + ",posH=" + RtxtPosiH.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
-                String sqlm2 = "Update rios set longitud=" + RtxtValorTipo.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
-                String sqlm3;
-                try {
-                    ResultSet idLocalidad = Inicio.sente.consulta("select id_localidad from rios_localidades where id_accidentes=" + ConsultarAccidentes.id);
-                    if (idLocalidad.next()) {
-                        sqlm3 = "UPDATE rios_localidades set km=" + RtxtKm.getText()
-                                + " WHERE id_accidentes=" + ConsultarAccidentes.id + " AND "
-                                + "id_localidad=" + idLocalidad.getString("id_localidad");
-                        if (Inicio.sente.ModificarTabla(sqlm3)) {
-                            comprobar++;
-                        }
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                    comprobar--;
-                }
-                //----------------------------------------------------
-                if (Inicio.sente.ModificarTabla(sqlm1)) {
-                    comprobar++;
-                } else {
-                    comprobar--;
-                }
-                if (Inicio.sente.ModificarTabla(sqlm2)) {
-                    comprobar++;
-                } else {
-                    comprobar--;
-                }
-
-                if (comprobar == 3) {
-                    JOptionPane.showMessageDialog(this, "Modifcado satisfactoriamente");
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Ha ocurrido un error al insertar el accidente");
-                }
-                mod = false;
-            } else {
-                //Insertar accidentes
-                String sql = "Insert into accidentes values(" + null
-                        + ", '" + RtxtNombre.getText()
-                        + "', " + RtxtPosV.getText()
-                        //+ "', " + RtxtKm.getText()
-                        + ", " + RtxtPosiH.getText() + ") ";
-                if (Inicio.sente.insertarTabla(sql)) {
-                    comprobar++;
-                } else {
-                    comprobar--;
-                }
-                //Insertar Rios con ID traido desde bs
-                try {
-                    comprobar++;
-                    ResultSet id = Inicio.sente.consulta("Select id_accidentes from accidentes where nombre='" + RtxtNombre.getText() + "'");
-                    if (id.next()) {
-                        String sqlr = "Insert into rios values(" + RtxtValorTipo.getText() + "," + id.getString("id_accidentes") + ")";
-                        Inicio.sente.insertarTabla(sqlr);
-                        ResultSet id2 = Inicio.sente.consulta("Select id_localidad from localidades where nombre='" + ComboNom.getSelectedItem() + "'");
-                        if (id2.next()) {
-                            String sqlrl = "Insert into rios_localidades values(" + id.getString("id_accidentes") + "," + id2.getString("id_localidad") + "," + RtxtKm.getText() + ")";
-                            Inicio.sente.insertarTabla(sqlrl);
-                        }
-                        //--------------------------------------
-                        ResultSet id3 = Inicio.sente.consulta("select id_paises from paises where nombre='" + RComboPais.getSelectedItem() + "'");
-                        if (id3.next()) {
-                            Inicio.sente.insertarTabla("insert into accidentes_paises values("
-                                    + id.getString("id_accidentes")
-                                    + ", " + id3.getString("id_paises") + ")");
-                        }
-                    }
-                } catch (SQLException ex) {
-                    System.err.println("Error: " + ex);
-                    comprobar--;
-                }
-
-                if (comprobar == 2) {
-                    JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente");
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Ha ocurrido un error al insertar el accidente");
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Debe rellenar los campos correctamente");
-        }
-
-    }//GEN-LAST:event_RbtnGraActionPerformed
-
-    private void RtxtKmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtxtKmActionPerformed
-
-    }//GEN-LAST:event_RtxtKmActionPerformed
-
-    private void RtxtValorTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtxtValorTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RtxtValorTipoActionPerformed
 
     private void LbtnGraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LbtnGraActionPerformed
         int comprobar = 0;
@@ -733,9 +622,9 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             } else {
                 //Insertar accidentes
                 String sql = "Insert into accidentes values(" + null
-                        + ", '" + LtxtNombre.getText()
-                        + "', " + LtxtPosV.getText()
-                        + ", " + LtxtPosH.getText() + ") ";
+                + ", '" + LtxtNombre.getText()
+                + "', " + LtxtPosV.getText()
+                + ", " + LtxtPosH.getText() + ") ";
                 if (Inicio.sente.insertarTabla(sql)) {
                     comprobar++;
                 } else {
@@ -750,8 +639,8 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                         ResultSet id2 = Inicio.sente.consulta("select id_paises from paises where nombre='" + RComboPais.getSelectedItem() + "'");
                         if (id2.next()) {
                             Inicio.sente.insertarTabla("insert into accidentes_paises values("
-                                    + id.getString("id_accidentes")
-                                    + ", " + id2.getString("id_paises") + ")");
+                                + id.getString("id_accidentes")
+                                + ", " + id2.getString("id_paises") + ")");
                         }
                     }
                     comprobar++;
@@ -772,14 +661,9 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_LbtnGraActionPerformed
 
-    private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
-
-    }//GEN-LAST:event_formWindowLostFocus
-
-    private void MbtnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MbtnModActionPerformed
-        new ConsultarAccidentes().setVisible(true);
-        ConsultarAccidentes.Montaña.setSelectedIndex(2);
-    }//GEN-LAST:event_MbtnModActionPerformed
+    private void LtxtPosHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LtxtPosHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LtxtPosHActionPerformed
 
     private void RComboPaisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_RComboPaisItemStateChanged
         ComboNom.removeAllItems();
@@ -798,9 +682,126 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_RComboPaisItemStateChanged
 
-    private void LComboPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LComboPaisActionPerformed
+    private void RtxtKmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtxtKmActionPerformed
+
+    }//GEN-LAST:event_RtxtKmActionPerformed
+
+//RIOS
+    private void RbtnGraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtnGraActionPerformed
+        int comprobar = 0;
+        Validar val = new Validar(5);
+        val.Vcadena(RtxtNombre.getText(), RtxtNombre);
+        val.Ventero(RtxtPosV.getText(), RtxtPosV, false);
+        val.Ventero(RtxtPosiH.getText(), RtxtPosiH, false);
+        val.Ventero(RtxtValorTipo.getText(), RtxtValorTipo, true);
+        val.Ventero(RtxtKm.getText(), RtxtKm, true);
+        if (val.comprobarCampos()) {
+            if (mod) {
+                String sqlm1 = "Update accidentes set nombre='" + RtxtNombre.getText() + "',posV=" + RtxtPosV.getText() + ",posH=" + RtxtPosiH.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
+                String sqlm2 = "Update rios set longitud=" + RtxtValorTipo.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
+                String sqlm3;
+                try {
+                    ResultSet idLocalidad = Inicio.sente.consulta("select id_localidad from rios_localidades where id_accidentes=" + ConsultarAccidentes.id);
+                    if (idLocalidad.next()) {
+                        sqlm3 = "UPDATE rios_localidades set km=" + RtxtKm.getText()
+                        + " WHERE id_accidentes=" + ConsultarAccidentes.id + " AND "
+                        + "id_localidad=" + idLocalidad.getString("id_localidad");
+                        if (Inicio.sente.ModificarTabla(sqlm3)) {
+                            comprobar++;
+                        }
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                    comprobar--;
+                }
+                //----------------------------------------------------
+                if (Inicio.sente.ModificarTabla(sqlm1)) {
+                    comprobar++;
+                } else {
+                    comprobar--;
+                }
+                if (Inicio.sente.ModificarTabla(sqlm2)) {
+                    comprobar++;
+                } else {
+                    comprobar--;
+                }
+
+                if (comprobar == 3) {
+                    JOptionPane.showMessageDialog(this, "Modifcado satisfactoriamente");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ha ocurrido un error al insertar el accidente");
+                }
+                mod = false;
+            } else {
+                //Insertar accidentes
+                String sql = "Insert into accidentes values(" + null
+                + ", '" + RtxtNombre.getText()
+                + "', " + RtxtPosV.getText()
+                //+ "', " + RtxtKm.getText()
+                + ", " + RtxtPosiH.getText() + ") ";
+                if (Inicio.sente.insertarTabla(sql)) {
+                    comprobar++;
+                } else {
+                    comprobar--;
+                }
+                //Insertar Rios con ID traido desde bs
+                try {
+                    comprobar++;
+                    ResultSet id = Inicio.sente.consulta("Select id_accidentes from accidentes where nombre='" + RtxtNombre.getText() + "'");
+                    if (id.next()) {
+                        String sqlr = "Insert into rios values(" + RtxtValorTipo.getText() + "," + id.getString("id_accidentes") + ")";
+                        Inicio.sente.insertarTabla(sqlr);
+                        ResultSet id2 = Inicio.sente.consulta("Select id_localidad from localidades where nombre='" + ComboNom.getSelectedItem() + "'");
+                        if (id2.next()) {
+                            String sqlrl = "Insert into rios_localidades values(" + id.getString("id_accidentes") + "," + id2.getString("id_localidad") + "," + RtxtKm.getText() + ")";
+                            Inicio.sente.insertarTabla(sqlrl);
+                        }
+                        //--------------------------------------
+                        ResultSet id3 = Inicio.sente.consulta("select id_paises from paises where nombre='" + RComboPais.getSelectedItem() + "'");
+                        if (id3.next()) {
+                            Inicio.sente.insertarTabla("insert into accidentes_paises values("
+                                + id.getString("id_accidentes")
+                                + ", " + id3.getString("id_paises") + ")");
+                        }
+                    }
+                } catch (SQLException ex) {
+                    System.err.println("Error: " + ex);
+                    comprobar--;
+                }
+
+                if (comprobar == 2) {
+                    JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ha ocurrido un error al insertar el accidente");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe rellenar los campos correctamente");
+        }
+    }//GEN-LAST:event_RbtnGraActionPerformed
+
+    private void RbtnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtnModActionPerformed
+        new ConsultarAccidentes().setVisible(true);
+        ConsultarAccidentes.Montaña.setSelectedIndex(0);
+    }//GEN-LAST:event_RbtnModActionPerformed
+
+    private void ComboNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboNomActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_LComboPaisActionPerformed
+    }//GEN-LAST:event_ComboNomActionPerformed
+
+    private void RtxtValorTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtxtValorTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RtxtValorTipoActionPerformed
+
+    private void RtxtPosiHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtxtPosiHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RtxtPosiHActionPerformed
+
+    private void RtxtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtxtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RtxtNombreActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT a.id_accidentes, a.nombre, a.posV, a.posH, L.superficie, p.nombre AS nombre_pais
+                FROM accidentes a,lagos L, accidentes_paises ap, paises p
+                WHERE a.id_accidentes = L.id_accidentes
+                and ((a.id_accidentes = ap.id_accidentes) AND (p.id_paises = ap.id_paises))]]>
+	</queryString>
+	<field name="id_accidentes" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="posV" class="java.lang.Integer"/>
+	<field name="posH" class="java.lang.Integer"/>
+	<field name="superficie" class="java.lang.Integer"/>
+	<field name="nombre_pais" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="417" y="0" width="138" height="25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="206" y="0" width="133" height="79"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="227" y="29" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GOK Accident]]></text>
+			</staticText>
+			<image>
+				<reportElement x="2" y="0" width="78" height="79"/>
+				<imageExpression><![CDATA["C:\\Users\\ideapad330\\Documents\\NetBeansProjects\\AccidentesGeoProyect\\src\\Imagenes\\registroIcono.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="62" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="2" y="13" width="555" height="35"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="237" y="20" width="85" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte Lagos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="71" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="51"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="67" y="14" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="239" y="14" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[País]]></text>
+			</staticText>
+			<line>
+				<reportElement x="189" y="0" width="1" height="51"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="77" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="2" y="0" width="555" height="54"/>
+			</rectangle>
+			<textField>
+				<reportElement x="67" y="20" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="20" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nombre_pais}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="190" y="0" width="1" height="54"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

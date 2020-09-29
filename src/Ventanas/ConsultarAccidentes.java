@@ -5,6 +5,7 @@
  */
 package Ventanas;
 
+import Clases.Reportes;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -33,10 +34,10 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         Inicio.ponerTemaPanel(Inicio.tema, new JPanel[]{jPanel1, jPanel2, jPanel3}, null, false);
         setTitle("Consultar accidentas");
         setLocationRelativeTo(null);
+        setResizable(false);
         //Cargar icono
         setIconImage(new ImageIcon(getClass().getResource("../Imagenes/iconoMain.png")).getImage());
-        
-        
+
         //---------------Rios--------------------------
         final String TITULOS[] = new String[]{"ID ", "Nombre", "Pos V", "Pos H", "Longitud", "Km", "Localidad", "Pais"};
         DefaultTableModel dt = new DefaultTableModel(null, TITULOS);
@@ -115,16 +116,19 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         jTableRios = new javax.swing.JTable();
         jbtnModR = new javax.swing.JButton();
         jbtnElimR = new javax.swing.JButton();
+        btnGenerarReportRios = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableLago = new javax.swing.JTable();
         jbtnModL = new javax.swing.JButton();
         jbtnElimL = new javax.swing.JButton();
+        btnGenerarReportLagos = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableMont = new javax.swing.JTable();
         jbtnModM = new javax.swing.JButton();
         jbtnElimM = new javax.swing.JButton();
+        btnGenerarReportMonta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -138,7 +142,15 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTableRios);
 
         jbtnModR.setText("Modificar");
@@ -155,6 +167,13 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             }
         });
 
+        btnGenerarReportRios.setText("Generar reporte");
+        btnGenerarReportRios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarReportRiosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -164,6 +183,8 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 .addComponent(jbtnModR)
                 .addGap(18, 18, 18)
                 .addComponent(jbtnElimR)
+                .addGap(18, 18, 18)
+                .addComponent(btnGenerarReportRios)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -178,7 +199,8 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnModR)
-                    .addComponent(jbtnElimR))
+                    .addComponent(jbtnElimR)
+                    .addComponent(btnGenerarReportRios))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -213,6 +235,13 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             }
         });
 
+        btnGenerarReportLagos.setText("Generar reporte");
+        btnGenerarReportLagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarReportLagosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -226,6 +255,8 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 .addComponent(jbtnModL)
                 .addGap(18, 18, 18)
                 .addComponent(jbtnElimL)
+                .addGap(18, 18, 18)
+                .addComponent(btnGenerarReportLagos)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -236,7 +267,8 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnModL)
-                    .addComponent(jbtnElimL))
+                    .addComponent(jbtnElimL)
+                    .addComponent(btnGenerarReportLagos))
                 .addGap(0, 24, Short.MAX_VALUE))
         );
 
@@ -269,6 +301,13 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             }
         });
 
+        btnGenerarReportMonta.setText("Generar reporte");
+        btnGenerarReportMonta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarReportMontaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -282,6 +321,8 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 .addComponent(jbtnModM)
                 .addGap(18, 18, 18)
                 .addComponent(jbtnElimM)
+                .addGap(18, 18, 18)
+                .addComponent(btnGenerarReportMonta)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -292,7 +333,8 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnModM)
-                    .addComponent(jbtnElimM))
+                    .addComponent(jbtnElimM)
+                    .addComponent(btnGenerarReportMonta))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -517,10 +559,42 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbtnElimRActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void btnGenerarReportRiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReportRiosActionPerformed
+        Reportes rep = new Reportes();
+        String sql = "SELECT a.id_accidentes,a.nombre,a.posV,a.posH,r.longitud,rl.km,l.nombre AS nombre_lago, p.nombre AS nombre_pais"
+            + " FROM accidentes a, accidentes_paises ap, rios r, rios_localidades rl, localidades l, paises p"
+            + " WHERE (a.id_accidentes = r.id_accidentes)"
+            + "AND ((r.id_accidentes = rl.id_accidentes) AND (l.id_localidad = rl.id_localidad))"
+            + "AND (l.id_paises = p.id_paises)"
+            + "AND ((a.id_accidentes = ap.id_accidentes) AND (p.id_paises = ap.id_paises))";
+        String reportDir = "Reportes/reportRios.jasper";
+        rep.GenerarRepor(sql, reportDir, "", "");
+    }//GEN-LAST:event_btnGenerarReportRiosActionPerformed
+
+    private void btnGenerarReportLagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReportLagosActionPerformed
+        Reportes rep = new Reportes();
+        String sql = "SELECT a.id_accidentes, a.nombre, a.posV, a.posH, L.superficie, p.nombre AS nombre_pais\n"
+                + "FROM accidentes a,lagos L, accidentes_paises ap, paises p\n"
+                + "WHERE a.id_accidentes = L.id_accidentes\n"
+                + "and ((a.id_accidentes = ap.id_accidentes) AND (p.id_paises = ap.id_paises))";
+        String reportDir = "Reportes/reportLagos.jasper";
+        rep.GenerarRepor(sql, reportDir, "", "");
+    }//GEN-LAST:event_btnGenerarReportLagosActionPerformed
+
+    private void btnGenerarReportMontaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReportMontaActionPerformed
+        Reportes rep = new Reportes();
+        String sql = "SELECT a.id_accidentes, a.nombre, a.posV, a.posH, M.altura, p.nombre AS pais_nombre \n"
+                + "FROM accidentes a,montañas M , accidentes_paises ap, paises p\n"
+                + "WHERE a.id_accidentes = M.id_accidentes\n"
+                + "AND ((a.id_accidentes = ap.id_accidentes) AND (p.id_paises = ap.id_paises))";
+        String reportDir = "Reportes/reportMontana.jasper";
+        rep.GenerarRepor(sql, reportDir, "", "");
+    }//GEN-LAST:event_btnGenerarReportMontaActionPerformed
+
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -531,16 +605,28 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarAccidentes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarAccidentes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarAccidentes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarAccidentes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarAccidentes.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ConsultarAccidentes.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ConsultarAccidentes.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ConsultarAccidentes.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -554,6 +640,9 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTabbedPane Montaña;
+    private javax.swing.JButton btnGenerarReportLagos;
+    private javax.swing.JButton btnGenerarReportMonta;
+    private javax.swing.JButton btnGenerarReportRios;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
