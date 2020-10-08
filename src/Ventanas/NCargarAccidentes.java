@@ -6,6 +6,7 @@
 package Ventanas;
 
 import Clases.Validar;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -129,10 +130,34 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Posicion verticar:");
+        jLabel2.setText("Posicion vertical:");
 
-        jLabel3.setText("Posicion Horizonta:");
+        RtxtPosV.setToolTipText("");
+        RtxtPosV.setName(""); // NOI18N
+        RtxtPosV.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                RtxtPosVFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                RtxtPosVFocusLost(evt);
+            }
+        });
+        RtxtPosV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RtxtPosVActionPerformed(evt);
+            }
+        });
 
+        jLabel3.setText("Posicion Horizontal:");
+
+        RtxtPosiH.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                RtxtPosiHFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                RtxtPosiHFocusLost(evt);
+            }
+        });
         RtxtPosiH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RtxtPosiHActionPerformed(evt);
@@ -224,7 +249,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                         .addComponent(RbtnGra)
                         .addGap(18, 18, 18)
                         .addComponent(RbtnMod)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         jPanelRiosLayout.setVerticalGroup(
             jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,8 +299,25 @@ public class NCargarAccidentes extends javax.swing.JFrame {
 
         jLabel7.setText("Posicion Vertical:");
 
+        LtxtPosV.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                LtxtPosVFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                LtxtPosVFocusLost(evt);
+            }
+        });
+
         jLabel8.setText("Posicion Horizontal:");
 
+        LtxtPosH.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                LtxtPosHFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                LtxtPosHFocusLost(evt);
+            }
+        });
         LtxtPosH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LtxtPosHActionPerformed(evt);
@@ -376,6 +418,14 @@ public class NCargarAccidentes extends javax.swing.JFrame {
 
         jLabel12.setText("Posicion Horizontal:");
 
+        MtxtPosV.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                MtxtPosVFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                MtxtPosVFocusLost(evt);
+            }
+        });
         MtxtPosV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MtxtPosVActionPerformed(evt);
@@ -384,6 +434,14 @@ public class NCargarAccidentes extends javax.swing.JFrame {
 
         jLabel13.setText("Posicion Vertical:");
 
+        MtxtPosH.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                MtxtPosHFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                MtxtPosHFocusLost(evt);
+            }
+        });
         MtxtPosH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MtxtPosHActionPerformed(evt);
@@ -693,8 +751,8 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         val.Vcadena(RtxtNombre.getText(), RtxtNombre);
         val.Ventero(RtxtPosV.getText(), RtxtPosV, false);
         val.Ventero(RtxtPosiH.getText(), RtxtPosiH, false);
-        val.Ventero(RtxtValorTipo.getText(), RtxtValorTipo, true);
-        val.Ventero(RtxtKm.getText(), RtxtKm, true);
+        val.Ventero(RtxtValorTipo.getText(), RtxtValorTipo, true);//No puede ser negativo
+        val.Ventero(RtxtKm.getText(), RtxtKm, true);//No puede ser negativo
         if (val.comprobarCampos()) {
             if (mod) {
                 String sqlm1 = "Update accidentes set nombre='" + RtxtNombre.getText() + "',posV=" + RtxtPosV.getText() + ",posH=" + RtxtPosiH.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
@@ -802,6 +860,70 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     private void RtxtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtxtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RtxtNombreActionPerformed
+
+    private void RtxtPosVFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RtxtPosVFocusGained
+        RtxtPosV.setText("");
+        RtxtPosV.setForeground(Color.BLACK);
+    }//GEN-LAST:event_RtxtPosVFocusGained
+
+    private void RtxtPosVFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RtxtPosVFocusLost
+        RtxtPosV.setText("Admite negativo");
+        RtxtPosV.setForeground(Color.GRAY);
+    }//GEN-LAST:event_RtxtPosVFocusLost
+
+    private void RtxtPosVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtxtPosVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RtxtPosVActionPerformed
+
+    private void RtxtPosiHFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RtxtPosiHFocusGained
+        RtxtPosiH.setText("");
+        RtxtPosiH.setForeground(Color.BLACK);
+    }//GEN-LAST:event_RtxtPosiHFocusGained
+
+    private void RtxtPosiHFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RtxtPosiHFocusLost
+        RtxtPosiH.setText("Admite negativo");
+        RtxtPosiH.setForeground(Color.GRAY);
+    }//GEN-LAST:event_RtxtPosiHFocusLost
+
+    private void LtxtPosVFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_LtxtPosVFocusLost
+        LtxtPosV.setText("Admite negativo");
+        LtxtPosV.setForeground(Color.GRAY);
+    }//GEN-LAST:event_LtxtPosVFocusLost
+
+    private void LtxtPosVFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_LtxtPosVFocusGained
+        LtxtPosV.setText("");
+        LtxtPosV.setForeground(Color.BLACK);
+    }//GEN-LAST:event_LtxtPosVFocusGained
+
+    private void LtxtPosHFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_LtxtPosHFocusGained
+        LtxtPosH.setText("");
+        LtxtPosH.setForeground(Color.BLACK);
+    }//GEN-LAST:event_LtxtPosHFocusGained
+
+    private void LtxtPosHFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_LtxtPosHFocusLost
+        LtxtPosH.setText("Admite negativo");
+        LtxtPosH.setForeground(Color.GRAY);
+    }//GEN-LAST:event_LtxtPosHFocusLost
+
+    private void MtxtPosVFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MtxtPosVFocusGained
+        MtxtPosV.setText("");
+        MtxtPosV.setForeground(Color.BLACK);
+    }//GEN-LAST:event_MtxtPosVFocusGained
+
+    private void MtxtPosVFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MtxtPosVFocusLost
+        MtxtPosV.setText("Admite negativo");
+        MtxtPosV.setForeground(Color.GRAY);
+    }//GEN-LAST:event_MtxtPosVFocusLost
+
+    private void MtxtPosHFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MtxtPosHFocusGained
+        MtxtPosV.setText("");
+        MtxtPosV.setForeground(Color.BLACK);
+    }//GEN-LAST:event_MtxtPosHFocusGained
+
+    private void MtxtPosHFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MtxtPosHFocusLost
+        MtxtPosH.setText("Admite negativo");
+        MtxtPosH.setForeground(Color.GRAY);
+    }//GEN-LAST:event_MtxtPosHFocusLost
 
     /**
      * @param args the command line arguments
