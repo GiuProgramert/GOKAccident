@@ -584,9 +584,9 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             } else {
                 //Insertar accidentes
                 String sql = "Insert into accidentes values(" + null
-                + ", '" + MtxtNombre.getText()
-                + "', " + MtxtPosV.getText()
-                + ", " + MtxtPosH.getText() + ") ";
+                        + ", '" + MtxtNombre.getText()
+                        + "', " + MtxtPosV.getText()
+                        + ", " + MtxtPosH.getText() + ") ";
                 if (Inicio.sente.insertarTabla(sql)) {
                     comprobar++;
                 } else {
@@ -602,8 +602,8 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                         ResultSet id2 = Inicio.sente.consulta("select id_paises from paises where nombre='" + MComboPais.getSelectedItem() + "'");
                         if (id2.next()) {
                             Inicio.sente.insertarTabla("insert into accidentes_paises values("
-                                + id.getString("id_accidentes")
-                                + ", " + id2.getString("id_paises") + ")");
+                                    + id.getString("id_accidentes")
+                                    + ", " + id2.getString("id_paises") + ")");
                         }
                     }
                     comprobar++;
@@ -680,9 +680,9 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             } else {
                 //Insertar accidentes
                 String sql = "Insert into accidentes values(" + null
-                + ", '" + LtxtNombre.getText()
-                + "', " + LtxtPosV.getText()
-                + ", " + LtxtPosH.getText() + ") ";
+                        + ", '" + LtxtNombre.getText()
+                        + "', " + LtxtPosV.getText()
+                        + ", " + LtxtPosH.getText() + ") ";
                 if (Inicio.sente.insertarTabla(sql)) {
                     comprobar++;
                 } else {
@@ -697,8 +697,8 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                         ResultSet id2 = Inicio.sente.consulta("select id_paises from paises where nombre='" + RComboPais.getSelectedItem() + "'");
                         if (id2.next()) {
                             Inicio.sente.insertarTabla("insert into accidentes_paises values("
-                                + id.getString("id_accidentes")
-                                + ", " + id2.getString("id_paises") + ")");
+                                    + id.getString("id_accidentes")
+                                    + ", " + id2.getString("id_paises") + ")");
                         }
                     }
                     comprobar++;
@@ -762,8 +762,8 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                     ResultSet idLocalidad = Inicio.sente.consulta("select id_localidad from rios_localidades where id_accidentes=" + ConsultarAccidentes.id);
                     if (idLocalidad.next()) {
                         sqlm3 = "UPDATE rios_localidades set km=" + RtxtKm.getText()
-                        + " WHERE id_accidentes=" + ConsultarAccidentes.id + " AND "
-                        + "id_localidad=" + idLocalidad.getString("id_localidad");
+                                + " WHERE id_accidentes=" + ConsultarAccidentes.id + " AND "
+                                + "id_localidad=" + idLocalidad.getString("id_localidad");
                         if (Inicio.sente.ModificarTabla(sqlm3)) {
                             comprobar++;
                         }
@@ -794,10 +794,10 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             } else {
                 //Insertar accidentes
                 String sql = "Insert into accidentes values(" + null
-                + ", '" + RtxtNombre.getText()
-                + "', " + RtxtPosV.getText()
-                //+ "', " + RtxtKm.getText()
-                + ", " + RtxtPosiH.getText() + ") ";
+                        + ", '" + RtxtNombre.getText()
+                        + "', " + RtxtPosV.getText()
+                        //+ "', " + RtxtKm.getText()
+                        + ", " + RtxtPosiH.getText() + ") ";
                 if (Inicio.sente.insertarTabla(sql)) {
                     comprobar++;
                 } else {
@@ -819,8 +819,8 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                         ResultSet id3 = Inicio.sente.consulta("select id_paises from paises where nombre='" + RComboPais.getSelectedItem() + "'");
                         if (id3.next()) {
                             Inicio.sente.insertarTabla("insert into accidentes_paises values("
-                                + id.getString("id_accidentes")
-                                + ", " + id3.getString("id_paises") + ")");
+                                    + id.getString("id_accidentes")
+                                    + ", " + id3.getString("id_paises") + ")");
                         }
                     }
                 } catch (SQLException ex) {
@@ -862,13 +862,17 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     }//GEN-LAST:event_RtxtNombreActionPerformed
 
     private void RtxtPosVFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RtxtPosVFocusGained
-        RtxtPosV.setText("");
-        RtxtPosV.setForeground(Color.BLACK);
+        if (RtxtPosV.getText().equals("Admite negativo")) {
+            RtxtPosV.setText("");
+            RtxtPosV.setForeground(Color.BLACK);
+        }
     }//GEN-LAST:event_RtxtPosVFocusGained
 
     private void RtxtPosVFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RtxtPosVFocusLost
-        RtxtPosV.setText("Admite negativo");
-        RtxtPosV.setForeground(Color.GRAY);
+        if (RtxtPosV.getText().equals("")) {
+            RtxtPosV.setText("Admite negativo");
+            RtxtPosV.setForeground(Color.GRAY);
+        }
     }//GEN-LAST:event_RtxtPosVFocusLost
 
     private void RtxtPosVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtxtPosVActionPerformed
@@ -876,53 +880,77 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     }//GEN-LAST:event_RtxtPosVActionPerformed
 
     private void RtxtPosiHFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RtxtPosiHFocusGained
-        RtxtPosiH.setText("");
-        RtxtPosiH.setForeground(Color.BLACK);
+        if (RtxtPosiH.getText().equals("Admite negativo")) {
+            RtxtPosiH.setText("");
+            RtxtPosiH.setForeground(Color.BLACK);
+        }
+
     }//GEN-LAST:event_RtxtPosiHFocusGained
 
     private void RtxtPosiHFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RtxtPosiHFocusLost
-        RtxtPosiH.setText("Admite negativo");
-        RtxtPosiH.setForeground(Color.GRAY);
+        if (RtxtPosiH.getText().equals("")) {
+            RtxtPosiH.setText("Admite negativo");
+            RtxtPosiH.setForeground(Color.GRAY);
+        }
+
     }//GEN-LAST:event_RtxtPosiHFocusLost
 
     private void LtxtPosVFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_LtxtPosVFocusLost
-        LtxtPosV.setText("Admite negativo");
-        LtxtPosV.setForeground(Color.GRAY);
+        if (LtxtPosV.getText().equals("")) {
+            LtxtPosV.setText("Admite negativo");
+            LtxtPosV.setForeground(Color.GRAY);
+        }
+
     }//GEN-LAST:event_LtxtPosVFocusLost
 
     private void LtxtPosVFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_LtxtPosVFocusGained
-        LtxtPosV.setText("");
-        LtxtPosV.setForeground(Color.BLACK);
+        if (LtxtPosV.getText().equals("Admite negativo")) {
+            LtxtPosV.setText("");
+            LtxtPosV.setForeground(Color.BLACK);
+        }
     }//GEN-LAST:event_LtxtPosVFocusGained
 
     private void LtxtPosHFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_LtxtPosHFocusGained
-        LtxtPosH.setText("");
-        LtxtPosH.setForeground(Color.BLACK);
+        if (LtxtPosH.getText().equals("Admite negativo")) {
+            LtxtPosH.setText("");
+            LtxtPosH.setForeground(Color.BLACK);
+        }
+
     }//GEN-LAST:event_LtxtPosHFocusGained
 
     private void LtxtPosHFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_LtxtPosHFocusLost
-        LtxtPosH.setText("Admite negativo");
-        LtxtPosH.setForeground(Color.GRAY);
+        if (LtxtPosH.getText().equals("")) {
+            LtxtPosH.setText("Admite negativo");
+            LtxtPosH.setForeground(Color.GRAY);
+        }
     }//GEN-LAST:event_LtxtPosHFocusLost
 
     private void MtxtPosVFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MtxtPosVFocusGained
-        MtxtPosV.setText("");
-        MtxtPosV.setForeground(Color.BLACK);
+        if (MtxtPosV.getText().equals("Admite negativo")) {
+            MtxtPosV.setText("");
+            MtxtPosV.setForeground(Color.BLACK);
+        }
     }//GEN-LAST:event_MtxtPosVFocusGained
 
     private void MtxtPosVFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MtxtPosVFocusLost
-        MtxtPosV.setText("Admite negativo");
-        MtxtPosV.setForeground(Color.GRAY);
+        if (MtxtPosV.getText().equals("")) {
+            MtxtPosV.setText("Admite negativo");
+            MtxtPosV.setForeground(Color.GRAY);
+        }
     }//GEN-LAST:event_MtxtPosVFocusLost
 
     private void MtxtPosHFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MtxtPosHFocusGained
-        MtxtPosV.setText("");
-        MtxtPosV.setForeground(Color.BLACK);
+        if (MtxtPosH.getText().equals(("Admite negativo"))) {
+            MtxtPosH.setText("");
+            MtxtPosH.setForeground(Color.BLACK);
+        }
     }//GEN-LAST:event_MtxtPosHFocusGained
 
     private void MtxtPosHFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_MtxtPosHFocusLost
-        MtxtPosH.setText("Admite negativo");
-        MtxtPosH.setForeground(Color.GRAY);
+        if (MtxtPosH.getText().equals("")) {
+            MtxtPosH.setText("Admite negativo");
+            MtxtPosH.setForeground(Color.GRAY);
+        }
     }//GEN-LAST:event_MtxtPosHFocusLost
 
     /**
