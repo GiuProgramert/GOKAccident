@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class ConsultarPaises extends javax.swing.JFrame {
 
     private int ID;
+    public static boolean Acti = false;
 
     /**
      * Creates new form ConsultarPaises
@@ -67,6 +68,13 @@ public class ConsultarPaises extends javax.swing.JFrame {
 
         JDialogModficarPais.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         JDialogModficarPais.setTitle("Modificar País");
+        JDialogModficarPais.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+                JDialogModficarPaisWindowLostFocus(evt);
+            }
+        });
 
         jlabelNomPais.setText("Nombre del país:");
 
@@ -198,18 +206,22 @@ public class ConsultarPaises extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModActionPerformed
-        this.setEnabled(false);
+
         try {
-            JDialogModficarPais.setResizable(false);
-            JDialogModficarPais.setLocationRelativeTo(null);
-            JDialogModficarPais.pack();
-            JDialogModficarPais.setVisible(true);
-            int fila = jTablePaises.getSelectedRow();
-            ID = Integer.parseInt((String) jTablePaises.getValueAt(fila, 0));
-            txtNombrePais.setText((String) jTablePaises.getValueAt(fila, 1));
+            if (!Acti) {
+                JDialogModficarPais.setResizable(false);
+                JDialogModficarPais.setLocationRelativeTo(null);
+                JDialogModficarPais.pack();
+                JDialogModficarPais.setVisible(true);
+                int fila = jTablePaises.getSelectedRow();
+                ID = Integer.parseInt((String) jTablePaises.getValueAt(fila, 0));
+                txtNombrePais.setText((String) jTablePaises.getValueAt(fila, 1));
+            } else {
+                JOptionPane.showMessageDialog(this, "Ya hay una ventana activa");
+                JDialogModficarPais.dispose();
+            }
         } catch (ArrayIndexOutOfBoundsException e) {
             JDialogModficarPais.setVisible(false);
-            this.setEnabled(true);
             JOptionPane.showMessageDialog(this, "Debe seleccionar un elemento");
         }
     }//GEN-LAST:event_btnModActionPerformed
@@ -227,7 +239,8 @@ public class ConsultarPaises extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Elemento eliminado con exito");
             } else {
                 this.toFront();
-                JOptionPane.showMessageDialog(this, "No puede eliminar este país ya\n que posee una Localidad en este");
+                JOptionPane.showMessageDialog(this, "No puede eliminar este país ya"
+                        + "\n que posee una Localidad en este");
                 this.setEnabled(true);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -236,6 +249,10 @@ public class ConsultarPaises extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un elemento");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void JDialogModficarPaisWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_JDialogModficarPaisWindowLostFocus
+        Acti = false;
+    }//GEN-LAST:event_JDialogModficarPaisWindowLostFocus
 
     /**
      * @param args the command line arguments

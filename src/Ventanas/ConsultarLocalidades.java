@@ -249,7 +249,8 @@ public class ConsultarLocalidades extends javax.swing.JFrame {
             if (Inicio.sente.eliminarElemento("delete from localidades where id_localidad='" + id + "'")) {
                 JOptionPane.showMessageDialog(this, "Elemento eliminado con exito");
             } else {
-                JOptionPane.showMessageDialog(this, "No puede eliminar este país \nya que posee una Localidad en este");
+                JOptionPane.showMessageDialog(this, "No puede eliminar este país "
+                        + "\n ya que posee un accidente cargado en este");
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             jDialogModificarLocalidad.setVisible(false);

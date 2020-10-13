@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -67,6 +68,10 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSelecLocalidad = new javax.swing.JDialog();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableLocalidades = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanelRios = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -78,13 +83,13 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         RtxtValorTipo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        ComboNom = new javax.swing.JComboBox<>();
         RbtnMod = new javax.swing.JButton();
         RbtnGra = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         RtxtKm = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         RComboPais = new javax.swing.JComboBox<>();
+        btnSelec = new javax.swing.JButton();
         jPanelLagos = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         LtxtNombre = new javax.swing.JTextField();
@@ -111,6 +116,44 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         MbtnGra = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         MComboPais = new javax.swing.JComboBox<>();
+
+        jTableLocalidades.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableLocalidades);
+
+        jButton2.setText("Aceptar");
+
+        javax.swing.GroupLayout jSelecLocalidadLayout = new javax.swing.GroupLayout(jSelecLocalidad.getContentPane());
+        jSelecLocalidad.getContentPane().setLayout(jSelecLocalidadLayout);
+        jSelecLocalidadLayout.setHorizontalGroup(
+            jSelecLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jSelecLocalidadLayout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
+            .addGroup(jSelecLocalidadLayout.createSequentialGroup()
+                .addGap(196, 196, 196)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jSelecLocalidadLayout.setVerticalGroup(
+            jSelecLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jSelecLocalidadLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -174,12 +217,6 @@ public class NCargarAccidentes extends javax.swing.JFrame {
 
         jLabel5.setText("Localidad:");
 
-        ComboNom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboNomActionPerformed(evt);
-            }
-        });
-
         RbtnMod.setText("Registro ríos");
         RbtnMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,6 +247,13 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             }
         });
 
+        btnSelec.setText("Seleccionar");
+        btnSelec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelRiosLayout = new javax.swing.GroupLayout(jPanelRios);
         jPanelRios.setLayout(jPanelRiosLayout);
         jPanelRiosLayout.setHorizontalGroup(
@@ -228,11 +272,6 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(RtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRiosLayout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(ComboNom, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanelRiosLayout.createSequentialGroup()
                                 .addGap(36, 36, 36)
                                 .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -243,7 +282,13 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                                         .addComponent(RtxtKm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel4)
-                                        .addComponent(RtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(RtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRiosLayout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(btnSelec, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(36, 36, 36))))
                     .addComponent(jLabel15)
                     .addGroup(jPanelRiosLayout.createSequentialGroup()
                         .addComponent(RbtnGra)
@@ -280,12 +325,13 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                 .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelRiosLayout.createSequentialGroup()
                         .addComponent(jLabel15)
-                        .addGap(7, 7, 7)
-                        .addComponent(RComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4)
+                        .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(RComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSelec, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelRiosLayout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(34, 34, 34))
-                    .addComponent(ComboNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RbtnGra)
@@ -547,7 +593,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
-
+        ConsultarAccidentes.Acti = false;
     }//GEN-LAST:event_formWindowLostFocus
 
 //MONTAÑA
@@ -724,20 +770,20 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     }//GEN-LAST:event_LtxtPosHActionPerformed
 
     private void RComboPaisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_RComboPaisItemStateChanged
-        ComboNom.removeAllItems();
-        try {
-            ResultSet id = Inicio.sente.consulta("select id_paises from paises where nombre='" + RComboPais.getSelectedItem() + "'");
-            if (id.next()) {
-                String sql = "Select * from localidades where id_paises='" + id.getString("id_paises") + "'";
-                ResultSet rs = Inicio.sente.consulta(sql);
-                while (rs.next()) {
-                    ComboNom.addItem(rs.getString("nombre"));
-                }
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(NCargarAccidentes.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        ComboNom.removeAllItems();
+//        try {
+//            ResultSet id = Inicio.sente.consulta("select id_paises from paises where nombre='" + RComboPais.getSelectedItem() + "'");
+//            if (id.next()) {
+//                String sql = "Select * from localidades where id_paises='" + id.getString("id_paises") + "'";
+//                ResultSet rs = Inicio.sente.consulta(sql);
+//                while (rs.next()) {
+//                    ComboNom.addItem(rs.getString("nombre"));
+//                }
+//            }
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(NCargarAccidentes.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_RComboPaisItemStateChanged
 
     private void RtxtKmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtxtKmActionPerformed
@@ -810,11 +856,12 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                     if (id.next()) {
                         String sqlr = "Insert into rios values(" + RtxtValorTipo.getText() + "," + id.getString("id_accidentes") + ")";
                         Inicio.sente.insertarTabla(sqlr);
-                        ResultSet id2 = Inicio.sente.consulta("Select id_localidad from localidades where nombre='" + ComboNom.getSelectedItem() + "'");
-                        if (id2.next()) {
-                            String sqlrl = "Insert into rios_localidades values(" + id.getString("id_accidentes") + "," + id2.getString("id_localidad") + "," + RtxtKm.getText() + ")";
-                            Inicio.sente.insertarTabla(sqlrl);
-                        }
+                        //Cambiar
+//                        ResultSet id2 = Inicio.sente.consulta("Select id_localidad from localidades where nombre='" + ComboNom.getSelectedItem() + "'");
+//                        if (id2.next()) {
+//                            String sqlrl = "Insert into rios_localidades values(" + id.getString("id_accidentes") + "," + id2.getString("id_localidad") + "," + RtxtKm.getText() + ")";
+//                            Inicio.sente.insertarTabla(sqlrl);
+//                        }
                         //--------------------------------------
                         ResultSet id3 = Inicio.sente.consulta("select id_paises from paises where nombre='" + RComboPais.getSelectedItem() + "'");
                         if (id3.next()) {
@@ -844,10 +891,6 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         new ConsultarAccidentes().setVisible(true);
         ConsultarAccidentes.Montaña.setSelectedIndex(0);
     }//GEN-LAST:event_RbtnModActionPerformed
-
-    private void ComboNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboNomActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ComboNomActionPerformed
 
     private void RtxtValorTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtxtValorTipoActionPerformed
         // TODO add your handling code here:
@@ -953,6 +996,28 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_MtxtPosHFocusLost
 
+    private void btnSelecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecActionPerformed
+        jSelecLocalidad.setVisible(true);
+        jSelecLocalidad.setSize(474, 414);
+        
+        //-------------------------------------------------------------
+        final String TITULOS[] = new String[]{"ID ", "Localidades", " "};
+        DefaultTableModel dt = new DefaultTableModel(null, TITULOS);
+        ResultSet rs = Inicio.sente.consulta("select id_localidad, nombre from localidades");
+        String columnas[] = new String[2];
+        //-------------------------------------------------------------
+        try {
+            while (rs.next()) {
+                for (int i = 0; i < 2; i++) {
+                    columnas[i] = rs.getString(i + 1);
+                }
+                dt.addRow(columnas);
+            }
+            jTableLocalidades.setModel(dt);
+        } catch (SQLException e) {
+        }
+    }//GEN-LAST:event_btnSelecActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -989,7 +1054,6 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JComboBox<String> ComboNom;
     public static javax.swing.JComboBox<String> LComboPais;
     private javax.swing.JButton LbtnGra;
     public static javax.swing.JButton LbtnMod;
@@ -1006,12 +1070,14 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     public static javax.swing.JTextField MtxtValorTipo;
     public static javax.swing.JComboBox<String> RComboPais;
     private javax.swing.JButton RbtnGra;
-    private javax.swing.JButton RbtnMod;
+    public static javax.swing.JButton RbtnMod;
     public static javax.swing.JTextField RtxtKm;
     public static javax.swing.JTextField RtxtNombre;
     public static javax.swing.JTextField RtxtPosV;
     public static javax.swing.JTextField RtxtPosiH;
     public static javax.swing.JTextField RtxtValorTipo;
+    private javax.swing.JButton btnSelec;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1032,6 +1098,9 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelLagos;
     private javax.swing.JPanel jPanelMontanas;
     private javax.swing.JPanel jPanelRios;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JDialog jSelecLocalidad;
     public static javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTableLocalidades;
     // End of variables declaration//GEN-END:variables
 }

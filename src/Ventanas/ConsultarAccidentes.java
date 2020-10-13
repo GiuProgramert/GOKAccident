@@ -23,7 +23,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
 
     public static int id;
 
-    public boolean Acti = false;
+    public static boolean Acti = false;
 
     /**
      * Creates new form ConsultarAccidentes
@@ -372,14 +372,17 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 NCargarAccidentes.RtxtPosiH.setText((String) jTableRios.getValueAt(fila, 3));
                 NCargarAccidentes.RtxtValorTipo.setText((String) jTableRios.getValueAt(fila, 4));
                 NCargarAccidentes.RtxtKm.setText((String) jTableRios.getValueAt(fila, 5));
-                NCargarAccidentes.ComboNom.setEnabled(false);
+                //NCargarAccidentes.ComboNom.setEnabled(false);
                 NCargarAccidentes.RComboPais.setEnabled(false);
+                NCargarAccidentes.RbtnMod.setEnabled(true);
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Ya hay una ventana activa");
                 cr.dispose();
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             Acti = false;
+            cr.dispose();
             this.setEnabled(true);
             JOptionPane.showMessageDialog(this, "Debe seleccionar un elemento");
         }
@@ -409,7 +412,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Borrado con exito");
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Error al eliminar el accidente");
+                JOptionPane.showMessageDialog(this, "Error al eliminar el accidente contacte con el técnico");
             }
 
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -441,7 +444,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Borrado con exito");
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Error al eliminar el accidente");
+                JOptionPane.showMessageDialog(this, "Error al eliminar el accidente contacte con el técnico");
             }
 
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -474,6 +477,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         } catch (ArrayIndexOutOfBoundsException e) {
             Acti = false;
             this.setEnabled(true);
+            cl.dispose();
             JOptionPane.showMessageDialog(this, "Debe seleccionar un elemento");
         }
     }//GEN-LAST:event_jbtnModLActionPerformed
@@ -549,7 +553,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Borrado con exito");
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Error al eliminar el accidente");
+                JOptionPane.showMessageDialog(this, "Error al eliminar el accidente contacte con el técnico");
             }
 
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -562,11 +566,11 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
     private void btnGenerarReportRiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReportRiosActionPerformed
         Reportes rep = new Reportes();
         String sql = "SELECT a.id_accidentes,a.nombre,a.posV,a.posH,r.longitud,rl.km,l.nombre AS nombre_lago, p.nombre AS nombre_pais"
-            + " FROM accidentes a, accidentes_paises ap, rios r, rios_localidades rl, localidades l, paises p"
-            + " WHERE (a.id_accidentes = r.id_accidentes)"
-            + "AND ((r.id_accidentes = rl.id_accidentes) AND (l.id_localidad = rl.id_localidad))"
-            + "AND (l.id_paises = p.id_paises)"
-            + "AND ((a.id_accidentes = ap.id_accidentes) AND (p.id_paises = ap.id_paises))";
+                + " FROM accidentes a, accidentes_paises ap, rios r, rios_localidades rl, localidades l, paises p"
+                + " WHERE (a.id_accidentes = r.id_accidentes)"
+                + "AND ((r.id_accidentes = rl.id_accidentes) AND (l.id_localidad = rl.id_localidad))"
+                + "AND (l.id_paises = p.id_paises)"
+                + "AND ((a.id_accidentes = ap.id_accidentes) AND (p.id_paises = ap.id_paises))";
         String reportDir = "Reportes/reportRios.jasper";
         rep.GenerarRepor(sql, reportDir, "", "");
     }//GEN-LAST:event_btnGenerarReportRiosActionPerformed
@@ -591,10 +595,10 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         rep.GenerarRepor(sql, reportDir, "", "");
     }//GEN-LAST:event_btnGenerarReportMontaActionPerformed
 
-/**
- * @param args the command line arguments
- */
-public static void main(String args[]) {
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -605,28 +609,24 @@ public static void main(String args[]) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(ConsultarAccidentes.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(ConsultarAccidentes.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(ConsultarAccidentes.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ConsultarAccidentes.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
