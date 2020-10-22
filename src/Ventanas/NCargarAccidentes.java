@@ -9,13 +9,16 @@ import Clases.Validar;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -27,6 +30,9 @@ public class NCargarAccidentes extends javax.swing.JFrame {
      * Creates new form NCargarAccidentes
      */
     public static boolean mod = false;
+    public int idPais;
+    public ArrayList ids = new ArrayList();
+    public ArrayList kms = new ArrayList();
 
     public NCargarAccidentes() {
         initComponents();
@@ -71,7 +77,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         jSelecLocalidad = new javax.swing.JDialog();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLocalidades = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanelRios = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -130,7 +136,12 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableLocalidades);
 
-        jButton2.setText("Aceptar");
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jSelecLocalidadLayout = new javax.swing.GroupLayout(jSelecLocalidad.getContentPane());
         jSelecLocalidad.getContentPane().setLayout(jSelecLocalidadLayout);
@@ -142,7 +153,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
             .addGroup(jSelecLocalidadLayout.createSequentialGroup()
                 .addGap(196, 196, 196)
-                .addComponent(jButton2)
+                .addComponent(btnAceptar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jSelecLocalidadLayout.setVerticalGroup(
@@ -151,7 +162,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(btnAceptar)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -244,6 +255,11 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         RComboPais.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 RComboPaisItemStateChanged(evt);
+            }
+        });
+        RComboPais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RComboPaisActionPerformed(evt);
             }
         });
 
@@ -770,20 +786,14 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     }//GEN-LAST:event_LtxtPosHActionPerformed
 
     private void RComboPaisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_RComboPaisItemStateChanged
-//        ComboNom.removeAllItems();
-//        try {
-//            ResultSet id = Inicio.sente.consulta("select id_paises from paises where nombre='" + RComboPais.getSelectedItem() + "'");
-//            if (id.next()) {
-//                String sql = "Select * from localidades where id_paises='" + id.getString("id_paises") + "'";
-//                ResultSet rs = Inicio.sente.consulta(sql);
-//                while (rs.next()) {
-//                    ComboNom.addItem(rs.getString("nombre"));
-//                }
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(NCargarAccidentes.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        ResultSet idPaisSelect = Inicio.sente.consulta("select id_paises from paises where nombre='" + RComboPais.getSelectedItem() + "'");
+        try {
+            if (idPaisSelect.next()){
+                idPais = Integer.parseInt(idPaisSelect.getString("id_paises"));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
     }//GEN-LAST:event_RComboPaisItemStateChanged
 
     private void RtxtKmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtxtKmActionPerformed
@@ -863,6 +873,13 @@ public class NCargarAccidentes extends javax.swing.JFrame {
 //                            Inicio.sente.insertarTabla(sqlrl);
 //                        }
                         //--------------------------------------
+                        for (int i = 0; i < ids.size(); i++) {
+                            String sqlrt = "Insert into rios_localidades values("
+                                    + id.getString("id_accidentes") + ", "
+                                    + ids.get(i) + ", "
+                                    + kms.get(i) + ")";
+                            Inicio.sente.insertarTabla(sqlrt);
+                        }
                         ResultSet id3 = Inicio.sente.consulta("select id_paises from paises where nombre='" + RComboPais.getSelectedItem() + "'");
                         if (id3.next()) {
                             Inicio.sente.insertarTabla("insert into accidentes_paises values("
@@ -999,14 +1016,14 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     private void btnSelecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecActionPerformed
         jSelecLocalidad.setVisible(true);
         jSelecLocalidad.setSize(474, 414);
-        
-        //-------------------------------------------------------------
         final String TITULOS[] = new String[]{"ID ", "Localidades", " "};
         DefaultTableModel dt = new DefaultTableModel(null, TITULOS);
-        ResultSet rs = Inicio.sente.consulta("select id_localidad, nombre from localidades");
         String columnas[] = new String[2];
         //-------------------------------------------------------------
+
         try {
+            ResultSet rs = Inicio.sente.consulta("select id_localidad, nombre from localidades"
+                    + " where id_paises = " + idPais);
             while (rs.next()) {
                 for (int i = 0; i < 2; i++) {
                     columnas[i] = rs.getString(i + 1);
@@ -1014,9 +1031,28 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                 dt.addRow(columnas);
             }
             jTableLocalidades.setModel(dt);
+            int i;
+            for (i = 0; i < jTableLocalidades.getRowCount(); i++) {
+                addCheckBox(2, jTableLocalidades);
+            }
         } catch (SQLException e) {
         }
     }//GEN-LAST:event_btnSelecActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        for (int i = 0; i < jTableLocalidades.getRowCount(); i++) {
+            if (IsSelected(i, 2, jTableLocalidades)) {
+                ids.add(Integer.parseInt(jTableLocalidades.getValueAt(i, 0) + ""));
+                kms.add(Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la cantidad de Kilometros que "
+                        + "ocupa" + jTableLocalidades.getValueAt(i, 1))));
+            }
+        }
+        jSelecLocalidad.dispose();
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void RComboPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RComboPaisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RComboPaisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1053,6 +1089,16 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         });
     }
 
+    static void addCheckBox(int column, JTable jTableLocalidades) {
+        TableColumn tc = jTableLocalidades.getColumnModel().getColumn(column);
+        tc.setCellEditor(jTableLocalidades.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(jTableLocalidades.getDefaultRenderer(Boolean.class));
+    }
+
+    public boolean IsSelected(int row, int column, JTable jTableLocalidades) {
+        return jTableLocalidades.getValueAt(row, column) != null;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JComboBox<String> LComboPais;
     private javax.swing.JButton LbtnGra;
@@ -1076,8 +1122,8 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     public static javax.swing.JTextField RtxtPosV;
     public static javax.swing.JTextField RtxtPosiH;
     public static javax.swing.JTextField RtxtValorTipo;
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnSelec;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
