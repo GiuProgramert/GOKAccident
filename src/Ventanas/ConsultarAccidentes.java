@@ -39,19 +39,17 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("../Imagenes/iconoMain.png")).getImage());
 
         //---------------Rios--------------------------
-        final String TITULOS[] = new String[]{"ID ", "Nombre", "Pos V", "Pos H", "Longitud", "Km", "Localidad", "Pais"};
+        final String TITULOS[] = new String[]{"ID ", "Nombre", "Pos V", "Pos H", "Longitud", "Pais"};
         DefaultTableModel dt = new DefaultTableModel(null, TITULOS);
-        ResultSet rs = Inicio.sente.consulta("SELECT a.id_accidentes,a.nombre,a.posV,a.posH,r.longitud,rl.km,l.nombre, p.nombre\n"
-                + "FROM accidentes a, accidentes_paises ap, rios r, rios_localidades rl, localidades l, paises p\n"
-                + "WHERE (a.id_accidentes = r.id_accidentes)\n"
-                + "AND ((r.id_accidentes = rl.id_accidentes) AND (l.id_localidad = rl.id_localidad))\n"
-                + "AND (l.id_paises = p.id_paises)\n"
-                + "AND ((a.id_accidentes = ap.id_accidentes) AND (p.id_paises = ap.id_paises))");
-        String columnas[] = new String[8];
+        ResultSet rs = Inicio.sente.consulta("SELECT a.id_accidentes,a.nombre,a.posV,a.posH,r.longitud, p.nombre\n"
+                + " FROM accidentes a, accidentes_paises ap, rios r, paises p\n"
+                + " WHERE (a.id_accidentes = r.id_accidentes)\n"
+                + " AND ((a.id_accidentes = ap.id_accidentes) AND (p.id_paises = ap.id_paises))");
+        String columnas[] = new String[6];
         //-------------------------------------------------------------
         try {
             while (rs.next()) {
-                for (int i = 0; i < 8; i++) {
+                for (int i = 0; i < 6; i++) {
                     columnas[i] = rs.getString(i + 1);
                 }
                 dt.addRow(columnas);
@@ -110,6 +108,9 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialogLocalidades = new javax.swing.JDialog();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableLocalidades = new javax.swing.JTable();
         Montaña = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -117,6 +118,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         jbtnModR = new javax.swing.JButton();
         jbtnElimR = new javax.swing.JButton();
         btnGenerarReportRios = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableLago = new javax.swing.JTable();
@@ -129,6 +131,36 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         jbtnModM = new javax.swing.JButton();
         jbtnElimM = new javax.swing.JButton();
         btnGenerarReportMonta = new javax.swing.JButton();
+
+        jTableLocalidades.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTableLocalidades);
+
+        javax.swing.GroupLayout jDialogLocalidadesLayout = new javax.swing.GroupLayout(jDialogLocalidades.getContentPane());
+        jDialogLocalidades.getContentPane().setLayout(jDialogLocalidadesLayout);
+        jDialogLocalidadesLayout.setHorizontalGroup(
+            jDialogLocalidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialogLocalidadesLayout.createSequentialGroup()
+                .addContainerGap(33, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+        jDialogLocalidadesLayout.setVerticalGroup(
+            jDialogLocalidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogLocalidadesLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(87, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -174,6 +206,13 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Ver localidades");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -183,6 +222,8 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 .addComponent(jbtnModR)
                 .addGap(18, 18, 18)
                 .addComponent(jbtnElimR)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(btnGenerarReportRios)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -200,7 +241,8 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnModR)
                     .addComponent(jbtnElimR)
-                    .addComponent(btnGenerarReportRios))
+                    .addComponent(btnGenerarReportRios)
+                    .addComponent(jButton1))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -375,6 +417,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 //NCargarAccidentes.ComboNom.setEnabled(false);
                 NCargarAccidentes.RComboPais.setEnabled(false);
                 NCargarAccidentes.RbtnMod.setEnabled(true);
+                NCargarAccidentes.btnSelec.setEnabled(false);
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Ya hay una ventana activa");
@@ -595,6 +638,37 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         rep.GenerarRepor(sql, reportDir, "", "");
     }//GEN-LAST:event_btnGenerarReportMontaActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            int fila = jTableRios.getSelectedRow();
+            id = Integer.parseInt((String) jTableRios.getValueAt(fila, 0));
+            jDialogLocalidades.setVisible(true);
+            jDialogLocalidades.setLocationRelativeTo(null);
+            jDialogLocalidades.setSize(483, 431);
+            jTableLocalidades.setSize(483, 431);
+            final String TITULOS[] = new String[]{"ID ", "Localidad", "Km"};
+            DefaultTableModel dt = new DefaultTableModel(null, TITULOS);
+            ResultSet rs = Inicio.sente.consulta("select localidades.id_localidad, localidades.nombre, rios_localidades.km \n"
+                    + " from localidades, rios_localidades\n"
+                    + " WHERE rios_localidades.id_accidentes = \n" + id 
+                    + " AND (localidades.id_localidad = rios_localidades.id_localidad)");
+            String columnas[] = new String[3];
+            //-------------------------------------------------------------
+            try {
+                while (rs.next()) {
+                    for (int i = 0; i < 3; i++) {
+                        columnas[i] = rs.getString(i + 1);
+                    }
+                    dt.addRow(columnas);
+                }
+                jTableLocalidades.setModel(dt);
+            } catch (SQLException e) {
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un elemento");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -643,13 +717,17 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
     private javax.swing.JButton btnGenerarReportLagos;
     private javax.swing.JButton btnGenerarReportMonta;
     private javax.swing.JButton btnGenerarReportRios;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JDialog jDialogLocalidades;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTableLago;
+    private javax.swing.JTable jTableLocalidades;
     private javax.swing.JTable jTableMont;
     private javax.swing.JTable jTableRios;
     private javax.swing.JButton jbtnElimL;

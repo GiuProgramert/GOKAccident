@@ -1123,7 +1123,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     public static javax.swing.JTextField RtxtPosiH;
     public static javax.swing.JTextField RtxtValorTipo;
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton btnSelec;
+    public static javax.swing.JButton btnSelec;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
