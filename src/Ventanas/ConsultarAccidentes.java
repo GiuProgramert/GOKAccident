@@ -30,6 +30,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
      */
     public ConsultarAccidentes() {
         initComponents();
+
         //Diseño
         Inicio.ponerTemaPanel(Inicio.tema, new JPanel[]{jPanel1, jPanel2, jPanel3}, null, false);
         setTitle("Consultar accidentas");
@@ -111,6 +112,10 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         jDialogLocalidades = new javax.swing.JDialog();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableLocalidades = new javax.swing.JTable();
+        jDialogReportLocalidad = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBoxLocalidades = new javax.swing.JComboBox<>();
+        jToggleButton2 = new javax.swing.JToggleButton();
         Montaña = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -119,6 +124,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         jbtnElimR = new javax.swing.JButton();
         btnGenerarReportRios = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableLago = new javax.swing.JTable();
@@ -160,6 +166,50 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(87, Short.MAX_VALUE))
+        );
+
+        jLabel1.setText("Seleccione una localidad:");
+
+        jComboBoxLocalidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBoxLocalidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxLocalidadesActionPerformed(evt);
+            }
+        });
+
+        jToggleButton2.setText("Aceptar");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialogReportLocalidadLayout = new javax.swing.GroupLayout(jDialogReportLocalidad.getContentPane());
+        jDialogReportLocalidad.getContentPane().setLayout(jDialogReportLocalidadLayout);
+        jDialogReportLocalidadLayout.setHorizontalGroup(
+            jDialogReportLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogReportLocalidadLayout.createSequentialGroup()
+                .addGroup(jDialogReportLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialogReportLocalidadLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBoxLocalidades, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDialogReportLocalidadLayout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(jToggleButton2)))
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+        jDialogReportLocalidadLayout.setVerticalGroup(
+            jDialogReportLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialogReportLocalidadLayout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addGroup(jDialogReportLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBoxLocalidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
+                .addComponent(jToggleButton2)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -213,6 +263,13 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             }
         });
 
+        jToggleButton1.setText("Generar reporte localidad");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -226,6 +283,8 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(btnGenerarReportRios)
+                .addGap(18, 18, 18)
+                .addComponent(jToggleButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -242,7 +301,8 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                     .addComponent(jbtnModR)
                     .addComponent(jbtnElimR)
                     .addComponent(btnGenerarReportRios)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jToggleButton1))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -649,7 +709,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             DefaultTableModel dt = new DefaultTableModel(null, TITULOS);
             ResultSet rs = Inicio.sente.consulta("select localidades.id_localidad, localidades.nombre, rios_localidades.km \n"
                     + " from localidades, rios_localidades\n"
-                    + " WHERE rios_localidades.id_accidentes = \n" + id 
+                    + " WHERE rios_localidades.id_accidentes = \n" + id
                     + " AND (localidades.id_localidad = rios_localidades.id_localidad)");
             String columnas[] = new String[3];
             //-------------------------------------------------------------
@@ -667,6 +727,55 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un elemento");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        try {
+            jComboBoxLocalidades.removeAllItems();
+            jDialogReportLocalidad.setVisible(true);
+            jDialogReportLocalidad.setSize(374, 314);
+            String sql = "select accidentes.nombre "
+                    + "from accidentes, rios "
+                    + "where accidentes.id_accidentes = rios.id_accidentes";
+            ResultSet rs = Inicio.sente.consulta(sql);
+            while (rs.next()) {
+                jComboBoxLocalidades.addItem(rs.getString("nombre"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultarAccidentes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        try {
+            String sql = "select id_accidentes from accidentes "
+                    + "where accidentes.nombre = '" + jComboBoxLocalidades.getSelectedItem() + "'";
+            System.out.println(sql);
+            ResultSet rs = Inicio.sente.consulta(sql);
+            if (rs.next()) {
+                String sqlReporte = "SELECT\n"
+                        + "     localidades.nombre AS localidades_nombre,\n"
+                        + "     rios_localidades.km AS rios_localidades_km,\n"
+                        + "     accidentes.nombre AS accidentes_nombre\n"
+                        + "FROM\n"
+                        + "     localidades, rios_localidades, accidentes"
+                        + " WHERE"
+                        + "     accidentes.id_accidentes"
+                        + " = " + rs.getInt("id_accidentes");
+                System.out.println(sqlReporte);
+                String dirReporte = "Reportes/ReportLocalidades.jasper";
+                Reportes rep = new Reportes();
+                rep.GenerarRepor(sqlReporte, dirReporte, "", "");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultarAccidentes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jComboBoxLocalidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLocalidadesActionPerformed
+
+    }//GEN-LAST:event_jComboBoxLocalidadesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -711,13 +820,17 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTabbedPane Montaña;
     private javax.swing.JButton btnGenerarReportLagos;
     private javax.swing.JButton btnGenerarReportMonta;
     private javax.swing.JButton btnGenerarReportRios;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBoxLocalidades;
     private javax.swing.JDialog jDialogLocalidades;
+    private javax.swing.JDialog jDialogReportLocalidad;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -729,6 +842,8 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
     private javax.swing.JTable jTableLocalidades;
     private javax.swing.JTable jTableMont;
     private javax.swing.JTable jTableRios;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JButton jbtnElimL;
     private javax.swing.JButton jbtnElimM;
     private javax.swing.JButton jbtnElimR;
