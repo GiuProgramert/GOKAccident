@@ -6,6 +6,7 @@
 package Ventanas;
 
 import Clases.Reportes;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -38,7 +39,11 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         setResizable(false);
         //Cargar icono
         setIconImage(new ImageIcon(getClass().getResource("../Imagenes/iconoMain.png")).getImage());
-
+        //Cargar icono Dialogo selec rios
+        jDialogReportLocalidad.setIconImage(new ImageIcon(getClass().getResource("../Imagenes/iconoMain.png")).getImage());
+        //Cargar icono dialogo ver localidades
+        jDialogLocalidades.setIconImage(new ImageIcon(getClass().getResource("../Imagenes/iconoMain.png")).getImage());
+        
         //---------------Rios--------------------------
         final String TITULOS[] = new String[]{"ID ", "Nombre", "Pos V", "Pos H", "Longitud", "Pais"};
         DefaultTableModel dt = new DefaultTableModel(null, TITULOS);
@@ -97,7 +102,21 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             jTableMont.setModel(dtM);
         } catch (SQLException e) {
         }
-
+        
+        
+        //Poner tema a los dialogos
+        switch (Inicio.tema) {
+            case "Por defecto":
+                jDialogReportLocalidad.getContentPane().setBackground(new Color(80, 163, 231));
+                jLabelDiajogSelecLoc.setForeground(Color.BLACK);
+                jDialogLocalidades.getContentPane().setBackground(new Color(80, 163, 231));
+                break;
+            case "Oscuro":
+                jDialogReportLocalidad.getContentPane().setBackground(new Color(57, 67, 75));
+                jDialogLocalidades.getContentPane().setBackground(new Color(57, 67, 75));
+                jLabelDiajogSelecLoc.setForeground(Color.WHITE);
+                break;
+        }
     }
 
     /**
@@ -113,7 +132,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableLocalidades = new javax.swing.JTable();
         jDialogReportLocalidad = new javax.swing.JDialog();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelDiajogSelecLoc = new javax.swing.JLabel();
         jComboBoxLocalidades = new javax.swing.JComboBox<>();
         jToggleButton2 = new javax.swing.JToggleButton();
         Montaña = new javax.swing.JTabbedPane();
@@ -168,7 +187,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 .addContainerGap(87, Short.MAX_VALUE))
         );
 
-        jLabel1.setText("Seleccione una localidad:");
+        jLabelDiajogSelecLoc.setText("Seleccione una localidad:");
 
         jComboBoxLocalidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jComboBoxLocalidades.addActionListener(new java.awt.event.ActionListener() {
@@ -189,27 +208,24 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         jDialogReportLocalidadLayout.setHorizontalGroup(
             jDialogReportLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialogReportLocalidadLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
                 .addGroup(jDialogReportLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDialogReportLocalidadLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBoxLocalidades, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDialogReportLocalidadLayout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(jToggleButton2)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                    .addComponent(jToggleButton2)
+                    .addGroup(jDialogReportLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabelDiajogSelecLoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboBoxLocalidades, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jDialogReportLocalidadLayout.setVerticalGroup(
             jDialogReportLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialogReportLocalidadLayout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addGroup(jDialogReportLocalidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBoxLocalidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
+                .addGap(42, 42, 42)
+                .addComponent(jLabelDiajogSelecLoc)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBoxLocalidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
                 .addComponent(jToggleButton2)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -629,18 +645,6 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             } else {
                 verifica = false;
             }
-            /*//Borrar en rios_localidades
-            ResultSet idLocalidad = Inicio.sente.consulta("select id_localidad from localidades where nombre='"
-                    + jTableRios.getValueAt(fila, 6) + "'");
-            if (idLocalidad.next()) {
-                if (Inicio.sente.eliminarElemento("delete from rios_localidades where id_accidentes="
-                        + idfila
-                        + " AND id_localidad=" + idLocalidad.getString("id_localidad"))) {
-                    verifica = true;
-                } else {
-                    verifica = false;
-                }
-            }*/
             //Borrar en rios
             if (Inicio.sente.eliminarElemento("delete from rios where id_accidentes=" + idfila)) {
                 verifica = true;
@@ -711,6 +715,8 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             jDialogLocalidades.setVisible(true);
             jDialogLocalidades.setLocationRelativeTo(null);
             jDialogLocalidades.setSize(483, 431);
+            jDialogLocalidades.setTitle("Ver localidades del río");
+            jDialogLocalidades.setLocationRelativeTo(null);
             jTableLocalidades.setSize(483, 431);
             final String TITULOS[] = new String[]{"ID ", "Localidad", "Km"};
             DefaultTableModel dt = new DefaultTableModel(null, TITULOS);
@@ -739,7 +745,10 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
         try {
             jComboBoxLocalidades.removeAllItems();
             jDialogReportLocalidad.setVisible(true);
-            jDialogReportLocalidad.setSize(374, 314);
+            jDialogReportLocalidad.setSize(239, 214);
+            jDialogReportLocalidad.setLocationRelativeTo(null);
+            jDialogReportLocalidad.setTitle("Selecionar río");
+            
             String sql = "select accidentes.nombre "
                     + "from accidentes, rios "
                     + "where accidentes.id_accidentes = rios.id_accidentes";
@@ -839,7 +848,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxLocalidades;
     private javax.swing.JDialog jDialogLocalidades;
     private javax.swing.JDialog jDialogReportLocalidad;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelDiajogSelecLoc;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
