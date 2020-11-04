@@ -46,7 +46,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
 
         Inicio.ponerTemaPanel(Inicio.tema, new JPanel[]{jPanelRios, jPanelMontanas, jPanelLagos},
                 new JLabel[]{jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6,
-                    jLabel7, jLabel8, jLabel9, jLabel10, jLabel11, jLabel12, jLabel13, jLabel14,
+                    jLabel7, jLabel8, jLabel9, jLabel11, jLabel12, jLabel13, jLabel14,
                     jLabel15, jLabel16, jLabel17}, true);
         //-----------------------------------------------------------------------------------------
         try {
@@ -91,8 +91,6 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         RbtnMod = new javax.swing.JButton();
         RbtnGra = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        RtxtKm = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         RComboPais = new javax.swing.JComboBox<>();
         btnSelec = new javax.swing.JButton();
@@ -242,14 +240,6 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setText("Kilometros:");
-
-        RtxtKm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RtxtKmActionPerformed(evt);
-            }
-        });
-
         jLabel15.setText("Pais: ");
 
         RComboPais.addItemListener(new java.awt.event.ItemListener() {
@@ -289,16 +279,10 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                             .addComponent(RtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelRiosLayout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanelRiosLayout.createSequentialGroup()
-                                            .addGap(2, 2, 2)
-                                            .addComponent(jLabel10))
-                                        .addComponent(RtxtKm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4)
-                                        .addComponent(RtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(41, 41, 41)
+                                .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(RtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRiosLayout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,15 +308,9 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                     .addComponent(RtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(RtxtValorTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelRiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelRiosLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelRiosLayout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RtxtKm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RtxtPosV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -675,7 +653,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                 }
 
                 if (comprobar == 2) {
-                    JOptionPane.showMessageDialog(this, "Modifcado satisfactoriamente");
+                    JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente");
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Ha ocurrido un error al insertar el accidente");
@@ -731,7 +709,6 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                 } else {
                     comprobar--;
                 }
-
                 if (comprobar == 2) {
                     JOptionPane.showMessageDialog(this, "Modifcado satisfactoriamente");
                     this.dispose();
@@ -770,7 +747,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                 }
 
                 if (comprobar == 2) {
-                    JOptionPane.showMessageDialog(this, "Modifcado satisfactoriamente");
+                    JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente");
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Ha ocurrido un error al insertar el accidente");
@@ -796,38 +773,20 @@ public class NCargarAccidentes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_RComboPaisItemStateChanged
 
-    private void RtxtKmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RtxtKmActionPerformed
-
-    }//GEN-LAST:event_RtxtKmActionPerformed
-
 //RIOS
     private void RbtnGraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtnGraActionPerformed
         int comprobar = 0;
-        Validar val = new Validar(5);
+        Validar val = new Validar(4);
         val.Vcadena(RtxtNombre.getText(), RtxtNombre);
         val.Ventero(RtxtPosV.getText(), RtxtPosV, false);
         val.Ventero(RtxtPosiH.getText(), RtxtPosiH, false);
         val.Ventero(RtxtValorTipo.getText(), RtxtValorTipo, true);//No puede ser negativo
-        val.Ventero(RtxtKm.getText(), RtxtKm, true);//No puede ser negativo
         if (val.comprobarCampos()) {
             if (mod) {
                 String sqlm1 = "Update accidentes set nombre='" + RtxtNombre.getText() + "',posV=" + RtxtPosV.getText() + ",posH=" + RtxtPosiH.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
                 String sqlm2 = "Update rios set longitud=" + RtxtValorTipo.getText() + " where id_accidentes=" + ConsultarAccidentes.id;
                 String sqlm3;
-                try {
-                    ResultSet idLocalidad = Inicio.sente.consulta("select id_localidad from rios_localidades where id_accidentes=" + ConsultarAccidentes.id);
-                    if (idLocalidad.next()) {
-                        sqlm3 = "UPDATE rios_localidades set km=" + RtxtKm.getText()
-                                + " WHERE id_accidentes=" + ConsultarAccidentes.id + " AND "
-                                + "id_localidad=" + idLocalidad.getString("id_localidad");
-                        if (Inicio.sente.ModificarTabla(sqlm3)) {
-                            comprobar++;
-                        }
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                    comprobar--;
-                }
+                
                 //----------------------------------------------------
                 if (Inicio.sente.ModificarTabla(sqlm1)) {
                     comprobar++;
@@ -840,8 +799,8 @@ public class NCargarAccidentes extends javax.swing.JFrame {
                     comprobar--;
                 }
 
-                if (comprobar == 3) {
-                    JOptionPane.showMessageDialog(this, "Modifcado satisfactoriamente");
+                if (comprobar == 2) {
+                    JOptionPane.showMessageDialog(this, "Guardado satisfactoriamente");
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Ha ocurrido un error al insertar el accidente");
@@ -1044,7 +1003,7 @@ public class NCargarAccidentes extends javax.swing.JFrame {
             if (IsSelected(i, 2, jTableLocalidades)) {
                 ids.add(Integer.parseInt(jTableLocalidades.getValueAt(i, 0) + ""));
                 kms.add(Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la cantidad de Kilometros que "
-                        + "ocupa" + jTableLocalidades.getValueAt(i, 1))));
+                        + "ocupa " + jTableLocalidades.getValueAt(i, 1))));
             }
         }
         jSelecLocalidad.dispose();
@@ -1117,7 +1076,6 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     public static javax.swing.JComboBox<String> RComboPais;
     private javax.swing.JButton RbtnGra;
     public static javax.swing.JButton RbtnMod;
-    public static javax.swing.JTextField RtxtKm;
     public static javax.swing.JTextField RtxtNombre;
     public static javax.swing.JTextField RtxtPosV;
     public static javax.swing.JTextField RtxtPosiH;
@@ -1125,7 +1083,6 @@ public class NCargarAccidentes extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptar;
     public static javax.swing.JButton btnSelec;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

@@ -413,7 +413,6 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 NCargarAccidentes.RtxtPosV.setText((String) jTableRios.getValueAt(fila, 2));
                 NCargarAccidentes.RtxtPosiH.setText((String) jTableRios.getValueAt(fila, 3));
                 NCargarAccidentes.RtxtValorTipo.setText((String) jTableRios.getValueAt(fila, 4));
-                NCargarAccidentes.RtxtKm.setText((String) jTableRios.getValueAt(fila, 5));
                 //NCargarAccidentes.ComboNom.setEnabled(false);
                 NCargarAccidentes.RComboPais.setEnabled(false);
                 NCargarAccidentes.RbtnMod.setEnabled(true);
