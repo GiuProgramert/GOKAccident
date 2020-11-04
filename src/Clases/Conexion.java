@@ -24,11 +24,12 @@ public class Conexion {
         this.contraseña = contraseña;
     }
 
+    //Debe ser modificado en producccion
     public Conexion() {
-        this.base = "accidentgeo_proyect";
+        this.base = "accidentgeoproject";
         this.usuario = "root";
-        this.host = "localhost";
-        this.contraseña = "";
+        this.host = "localhost:3306";
+        this.contraseña = "Giumax_bd";
     }
 
     /*
