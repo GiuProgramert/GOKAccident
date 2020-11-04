@@ -620,7 +620,16 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             boolean verifica = false;
             int fila = jTableRios.getSelectedRow();
             int idfila = Integer.parseInt((String) jTableRios.getValueAt(fila, 0));
-            //Borrar en rios_localidades
+            if (Inicio.sente.eliminarElemento(
+                      "DELETE FROM \n"
+                    + "     rios_localidades "
+                    + "WHERE \n"
+                    + "     id_accidentes = " + idfila)){
+                verifica = true;
+            } else {
+                verifica = false;
+            }
+            /*//Borrar en rios_localidades
             ResultSet idLocalidad = Inicio.sente.consulta("select id_localidad from localidades where nombre='"
                     + jTableRios.getValueAt(fila, 6) + "'");
             if (idLocalidad.next()) {
@@ -631,7 +640,7 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
                 } else {
                     verifica = false;
                 }
-            }
+            }*/
             //Borrar en rios
             if (Inicio.sente.eliminarElemento("delete from rios where id_accidentes=" + idfila)) {
                 verifica = true;
@@ -660,8 +669,6 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
 
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un elemento");
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultarAccidentes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbtnElimRActionPerformed
 
@@ -755,21 +762,23 @@ public class ConsultarAccidentes extends javax.swing.JFrame {
             ResultSet rs = Inicio.sente.consulta(sql);
             if (rs.next()) {
                 String sqlReporte = "SELECT\n"
-                        + "     localidades.nombre AS localidades_nombre,\n"
+                        + "     localidades.nombre AS localidades_nombre, \n"
                         + "     rios_localidades.km AS rios_localidades_km,\n"
-                        + "     accidentes.nombre AS accidentes_nombre\n"
+                        + "     accidentes.nombre AS accidentes_nombre \n"
                         + "FROM\n"
-                        + "     localidades, rios_localidades, accidentes"
-                        + " WHERE"
-                        + "     accidentes.id_accidentes"
-                        + " = " + rs.getInt("id_accidentes");
+                        + "     localidades, rios_localidades, accidentes \n"
+                        + "WHERE\n"
+                        + "     accidentes.id_accidentes = " + rs.getString("id_accidentes") + " AND \n"
+                        + "     (localidades.id_localidad = rios_localidades.id_localidad) AND \n"
+                        + "     (accidentes.id_accidentes = rios_localidades.id_accidentes)";
                 System.out.println(sqlReporte);
                 String dirReporte = "Reportes/ReportLocalidades.jasper";
                 Reportes rep = new Reportes();
                 rep.GenerarRepor(sqlReporte, dirReporte, "", "");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ConsultarAccidentes.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Excepción: al momento de generar reporte de Las localidades que posee un rio"
+                    + ex);
         }
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
