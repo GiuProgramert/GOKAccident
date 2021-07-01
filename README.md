@@ -1,3 +1,6 @@
 # GOKAccident
 
-<p style="color: white; background-color: black;">Este es un proyecto creado para gestión de accidentes geográficos</p>
+### About
+
+I made this in my school in my 3rd grade final project, 
+It's an accident management whit Mysql and Java lenguajes
