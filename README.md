@@ -2,5 +2,4 @@
 
 ### About
 
-I made this in my school in my 3rd grade final project, 
-It's an accident management whit Mysql and Java lenguajes
+This project was done in my 3rd grade of college, written in Java using a MySQL as database.
